@@ -1,0 +1,762 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="世界尽头与冷酷仙境" />
+
+
+
+  <meta name="keywords" content="Blog,程序员初级修炼," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="主要介绍了Hexo，以及如何利用Hexo在windows和Ubuntu系统下搭建环境,以及将本地blog托管在github/gitcafe上">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建自己的Blog:hexo">
+<meta property="og:url" content="http://askingwindy.github.io/2015/04/16/搭建自己的Blog_hexo/index.html">
+<meta property="og:site_name" content="猫生">
+<meta property="og:description" content="主要介绍了Hexo，以及如何利用Hexo在windows和Ubuntu系统下搭建环境,以及将本地blog托管在github/gitcafe上">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建自己的Blog:hexo">
+<meta name="twitter:description" content="主要介绍了Hexo，以及如何利用Hexo在windows和Ubuntu系统下搭建环境,以及将本地blog托管在github/gitcafe上">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 搭建自己的Blog:hexo | 猫生 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">猫生</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '1LvasUPewmMcTCMJXJmZ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              搭建自己的Blog:hexo
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-04-16T16:36:30+08:00" content="2015-04-16">
+            2015-04-16
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/Blog/" itemprop="url" rel="index">
+                  <span itemprop="name">Blog</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/04/16/搭建自己的Blog_hexo/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/16/搭建自己的Blog_hexo/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="hexo简介">hexo简介</h1><p><a href="http://hexo.io/zh-cn/" target="_blank" rel="external">Hexo</a>可以将本地生成的静态网页托管到github或者gitcafe上，作者是台湾的<a href="https://github.com/tommy351/hexo" target="_blank" rel="external">@tommy351</a><br>根据网上教程，目前看来常使用的命令只有：<code>hexo g</code>, <code>hexo s</code>, <code>hexo d</code>和<code>hexo new ...</code>，十分简单方便</p>
+<h2 id="hexo管理blog的流程">hexo管理blog的流程</h2><h3 id="创建新的文章">创建新的文章</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"新文章名字"</span></span><br></pre></td></tr></table></figure>
+<p>利用<a href="http://markdownpad.com/" target="_blank" rel="external">MarkdownPad</a>在本地打开新建的文章，输入内容，并保存。</p>
+<h3 id="更新本地blog">更新本地blog</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<h3 id="本地查看blog">本地查看blog</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>此时，在浏览器中输入网址<a href="http://127.0.0.1:4000/" target="_blank" rel="external">localhost:4000</a>，就可以查看最新的blog。</p>
+<h3 id="在网上更新自己的blog">在网上更新自己的blog</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>为了使自己的系统能顺利执行以上命令并发表blog，需要做一些准备工作。</p>
+<hr>
+<h1 id="使用hexo的前期准备">使用hexo的前期准备</h1><h2 id="win8下搭建hexo环境">win8下搭建hexo环境</h2><h3 id="安装Git_bash">安装Git bash</h3><p>下载 <a href="https://code.google.com/p/msysgit/" target="_blank" rel="external">git</a> 最新版，安装即可</p>
+<h3 id="安装Node-js">安装Node.js</h3><p>下载 <a href="http://nodejs.org/" target="_blank" rel="external">Node.js</a> 最新版，安装即可</p>
+<h3 id="安装hexo">安装hexo</h3><p>在计算机任一位置点击鼠标右键，选择<em>Git bash</em>，再在打开的窗口中输入以下命令来安装hexo<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure></p>
+<p>安装成功后，再运行以下命令来更新hexo<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update -g hexo</span><br></pre></td></tr></table></figure></p>
+<p>到此为止已经搭建好hexo环境</p>
+<h2 id="ubuntu下搭建hexo环境">ubuntu下搭建hexo环境</h2><h3 id="安装git">安装git</h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git-core</span><br></pre></td></tr></table></figure>
+<h3 id="安装Node-js-1">安装Node.js</h3><p>nvm的github主页<a href="https://github.com/creationix/nvm" target="_blank" rel="external">https://github.com/creationix/nvm</a><br>使用以下两个命令中的一个就可以：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/creationix</span><span class="regexp">/nvm/master</span><span class="regexp">/install.sh | sh</span></span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- <span class="symbol">https:</span>/<span class="regexp">/raw.github.com/creationix</span><span class="regexp">/nvm/master</span><span class="regexp">/install.sh | sh</span></span><br></pre></td></tr></table></figure></p>
+<p>等待nvm安装完成后重启终端后运行一下命令安装Node.js:<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过nvm ls查看nvm版本号。这里是0.10.32</span></span><br><span class="line">nvm install <span class="number">0</span>.<span class="number">10.32</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="command_not_found">command not found</h4><p>重启虚拟机后，使用<code>hexo</code>可能会遇见command not found的报错，此时使用<code>nvm ls</code>检查Node.js的版本，并使用以下命令运行刚刚安装好的nvm。<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm use <span class="number">0</span>.<span class="number">10.32</span></span><br></pre></td></tr></table></figure></p>
+<p>或者直接设置全局的默认Node.js版本<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm <span class="keyword">alias</span> default <span class="number">0</span>.<span class="number">10.32</span></span><br></pre></td></tr></table></figure></p>
+<p>或者在/etc/rc.local文件中加入<code>nvm use 0.10.32</code></p>
+<h3 id="安装hexo-1">安装hexo</h3><p>输入以下命令来安装hexo<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br></pre></td></tr></table></figure></p>
+<p>安装成功后，再运行以下命令来更新hexo<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm update -g hexo</span><br></pre></td></tr></table></figure></p>
+<h1 id="在本地利用hexo搭建blog">在本地利用hexo搭建blog</h1><h2 id="初始化本地blog">初始化本地blog</h2><p>选择任意一个文件夹（以后所有的博客信息都在此文件夹中存储），在terminal中输入以下命令来初始化blog（<strong>以后关于此blog的所有操作多需要在这个文件夹开启Git bash，输入命令完成</strong>）。<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure></p>
+<p>hexo会自动在这个文件夹里建立网站所需要的所有文件，此时一个基本的框架已经搭建完毕</p>
+<h3 id="本地查看自己博客">本地查看自己博客</h3><p>输入以下命令可以在<a href="127.0.0.7:4000" target="_blank" rel="external">本地</a>看自己的blog，此时blog只在本地搭建完毕，其他人不能通过浏览器查看这个blog。<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure></p>
+<p>以后如果更新了blog,可通过以上两个命令在本地查看自己的blog。<br>其中<code>hexo generate</code>是blog的生成命令，每次更新自己的blog后必须执行此命令才能更新信息。</p>
+<hr>
+<h1 id="本地Blog发布到网上">本地Blog发布到网上</h1><h2 id="Github">Github</h2><p>国内访问github速度太渣，这里用gitcafe，一个国内的代码托管网站。</p>
+<h3 id="注册">注册</h3><p>注册<a href="https://github.com/" target="_blank" rel="external">github</a>,再次假设注册名在此假设<code>whoami</code></p>
+<h3 id="进入账户设置">进入账户设置</h3><p>进入<a href="https://gitcafe.com/account/public_keys" target="_blank" rel="external">SSH公钥管理</a>,添加主机公钥。产生公钥和配置公钥参考github下的<a href="https://help.github.com/articles/generating-ssh-keys" target="_blank" rel="external">教程</a>，几乎一致。再次贴出关键代码。</p>
+<h4 id="产生一个新的SSH">产生一个新的SSH</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -<span class="constant">C</span> <span class="string">"注册的邮箱“</span></span><br></pre></td></tr></table></figure>
+<p>一直按回车后，WINDOWS中在<code>c:\user\用户名\.ssh</code>（隐藏文件夹）文件夹/LINUX下是~/.ssh的隐藏文件夹中找到新的两个文件:<code>id_rsa</code>和<code>id_rsa.pub</code>。<code>id_rsa.pub</code>利用记事本打开后就是本机公钥。复制到网站的添加公钥中。</p>
+<h4 id="测试">测试</h4><p>可以输入下面的命令，看看设置是否成功，git@github.com的部分不要修改：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -<span class="constant">T</span> git<span class="variable">@github</span>.com</span><br></pre></td></tr></table></figure></p>
+<p>如果是下面的反馈：<br><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity <span class="keyword">of</span> host <span class="comment">'github.com (207.97.227.239)' can't be established.</span></span><br><span class="line">RSA <span class="keyword">key</span> fingerprint <span class="keyword">is</span> <span class="number">16</span>:<span class="number">27</span>:ac:a5:<span class="number">76</span>:<span class="number">28</span>:<span class="number">2</span>d:<span class="number">36</span>:<span class="number">63</span>:<span class="number">1</span>b:<span class="number">56</span>:<span class="number">4</span>d:eb:df:a6:<span class="number">48.</span></span><br><span class="line">Are you sure you want <span class="keyword">to</span> <span class="keyword">continue</span> connecting (yes/no)?</span><br></pre></td></tr></table></figure></p>
+<p>不要紧张，输入yes就好，然后会看到：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hi cnfeat! You've successfully authenticated, <span class="keyword">but</span> GitHub <span class="keyword">does</span> <span class="keyword">not</span> provide shell access.</span><br></pre></td></tr></table></figure></p>
+<h5 id="设置用户信息">设置用户信息</h5><p>现在你已经可以通过SSH链接到GitHub了，还有一些个人信息需要完善的。<br>Git会根据用户的名字和邮箱来记录提交。GitHub也是用这些信息来做权限的处理，输入下面的代码进行个人信息的设置，把名称和邮箱替换成你自己的，名字必须是你的真名，而不是GitHub的昵称。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "cnfeat"//用户名</span><br><span class="line">git config --global user.email  "cnfeat@gmail.com"//填写自己的邮箱</span><br></pre></td></tr></table></figure></p>
+<h3 id="网站上新建项目">网站上新建项目</h3><p>取名一定为<code>whoami.github.io</code>，否则<strong>无法托管</strong>成功。<br>项目新建成功后，进入项目管理，点击顶部的抓取，获取SSH的url</p>
+<h3 id="回到本地blog">回到本地blog</h3><p>在本地blog的主目录下打开<code>_config.yml</code>，拖到文件尾部，参考一下命令配置<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line">  <span class="symbol">type:</span> git <span class="comment">#gitcafe托管也是github</span></span><br><span class="line">  <span class="symbol">repository:</span> <span class="comment">#刚才复制的url，前面记得空一格，格式类似git<span class="yardoctag">@gitcafe</span>.com:whoami/whoami.github.iogit</span></span><br><span class="line">  <span class="symbol">branch:</span> master <span class="comment">#git项目的分支</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="最后部署">最后部署</h3><p>在git bash命令行中输入<code>hexo deploy</code>即可秒速布置成功。最后就可以访问主页<code>whoami.gitcafe.com</code></p>
+<h3 id="注意">注意</h3><p>每次更新blog后，都要先<code>hexo generate</code>再<code>hexo deploy</code>，否则无法看到最新成果</p>
+<h2 id="购买域名">购买域名</h2><p>参考<a href="http://zipperary.com/2013/06/19/secondary-dns/" target="_blank" rel="external">zipperary的blog：如何绑定二级域名</a>，先留着，以后自己看</p>
+<hr>
+<h1 id="hexo的优化">hexo的优化</h1><h2 id="添加评论框">添加评论框</h2><p>静态博客要使用第三方评论系统，hexo默认集成的是Disqus，国内的话还是建议用多说。直接用你的微博/豆瓣/人人/百度/开心网帐号登录多说，做一下基本设置。如果你是有的其他第三方评论系统，将通用代码粘贴到<code>themes\主题\layout\_partial\comment.ejs</code>里面，如下：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (config.disqus_shortname &amp;&amp; page.comments)&#123; %&gt;</span><br><span class="line">&lt;section id=<span class="string">"comment"</span>&gt;</span><br><span class="line">  <span class="comment">#你的通用代码</span></span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="其他主题添加评论框">其他主题添加评论框</h3><p>如果使用非官方默认的其他主题，具体参考其README.MD来更改评论框配置，以上仅供参考。</p>
+<h2 id="更换主题">更换主题</h2><p>在本地blog的主目录下打开<code>_config.yml</code>，在<code>theme:</code>后添加自己新下载的主题。</p>
+<h3 id="其他bug（新版的hexo已修正）">其他bug（新版的hexo已修正）</h3><p>首先 <code>hexo g</code> 本地服务器theme是新的，deploy到 Github 样式乱七八糟的<br>上传前要 <code>rm db.json</code></p>
+<h3 id="landscape主题">landscape主题</h3><h4 id="最新的landscape中，已经没有comment-ejs，这个评论功能合并到了同目录下的article-ejs">最新的landscape中，已经没有comment.ejs，这个评论功能合并到了同目录下的<code>article.ejs</code></h4><p>找到<code>&lt;section id=&quot;comments&quot;&gt;</code>，更改上一行的代码为：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span> (!index &amp;&amp; post.comments)&#123; %&gt;</span><br></pre></td></tr></table></figure></p>
+<p>之后再里面添加多说代码：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;section id=<span class="string">"comments"</span>&gt;</span><br><span class="line">  &lt;!--多说代码--&gt;</span><br><span class="line">&lt;<span class="regexp">/section&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="引用的格式修改">引用的格式修改</h4><p>今天发现landscape的引用时居中、斜体，中文不太美观，可以在<code>themes/landscape/source/css/_partial/article.styl</code>将引用<code>blockquote</code>的格式设置更改为左对齐等，并修改字体颜色，参考如下代码<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">font-size: 0.9em</span><br><span class="line">margin: line-height 0</span><br><span class="line">text-align: left</span><br><span class="line">color:#838B8B</span><br></pre></td></tr></table></figure></p>
+<h3 id="其他主题">其他主题</h3><h4 id="TKL主题">TKL主题</h4><p>十分漂亮的主题，git：<a href="https://github.com/askingwindy/TKL，以及博主的博客：http://go.kieran.top/" target="_blank" rel="external">https://github.com/askingwindy/TKL，以及博主的博客：http://go.kieran.top/</a></p>
+<h4 id="NEXT主题">NEXT主题</h4><p>本blog采用的主题，git：<a href="https://github.com/askingwindy/hexo-theme-next" target="_blank" rel="external">https://github.com/askingwindy/hexo-theme-next</a></p>
+<hr>
+<h1 id="Hexo中的特殊格式">Hexo中的特殊格式</h1><h2 id="写文章">写文章</h2><p>利用hexo自带命令，可以再<code>sourec/_posts</code>里按照模板生成一个<code>.md</code>的markdown文件，编辑此文件再保存就可以形成一篇漂亮的文档了~<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">"新文章"</span></span><br></pre></td></tr></table></figure></p>
+<p>生成的新文章中，默认格式如下：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">title:</span> &#123; &#123; title &#125; &#125;</span><br><span class="line"><span class="symbol">date:</span> &#123; &#123; date &#125; &#125;</span><br><span class="line"><span class="symbol">tags:</span> <span class="comment">#多标签用格式[tag1,tag2,tag3]</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>在hexo中，每个<code>:</code>后都必须空一格，否在在<code>hexo generate</code>时会报错</p>
+<h3 id="自定义模板">自定义模板</h3><p>如果想在自己的文章中增加分类，需要在文章首部添加<code>categories:</code>，添加后的格式为：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">title:</span> &#123; &#123; title &#125; &#125;</span><br><span class="line"><span class="symbol">date:</span> &#123; &#123; date &#125; &#125;</span><br><span class="line"><span class="symbol">tags:</span> <span class="comment">#空一格写标签</span></span><br><span class="line"><span class="symbol">categories:</span> <span class="comment">#空一格写分类</span></span><br><span class="line">---</span><br></pre></td></tr></table></figure></p>
+<p>为了避免每次添加，可以再<code>scaffolds/post.md</code>添加一行<code>categories:</code>。<code>scaffolds</code>文件夹中其余的<code>.md</code>文件机理相同。</p>
+<h3 id="插入图片">插入图片</h3><p>使用markdown写文章，插入图片的格式为<code>![图片名称](链接地址)</code>。<br>对于Hexo，可以支持两种方式的链接地址：</p>
+<ol>
+<li>使用本地路径：在<code>hexo/sourc</code>e目录下新建一个img文件夹，将图片放入该文件夹下，插入图片时链接即为<code>/img/图片名称</code>。</li>
+<li>使用图床，将图片拖入图床中，会生成图片的URL，这就是链接地址。<em>（网上推荐的有七牛、dropbox）</em></li>
+</ol>
+<h3 id="插入超链接">插入超链接</h3><p>与插入图片类似，格式为<code>[链接名字](链接地址)</code></p>
+<h3 id="文章摘要">文章摘要</h3><p>书写完正文后，页面会显示整篇文章，如果太长，可以再<em>摘要</em>(这个摘要自定义…)下添加<code>&lt;!--more--&gt;</code>，这样首页显示的只有题目和摘要，查看全文需要点击进去。<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示的摘要</span></span><br><span class="line">&lt;!--more--&gt;</span><br><span class="line"><span class="comment">#余下正文</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="fancybox">fancybox</h3><p>在文章<code>.md</code>的首部添加<code>photos:</code>后，可以有意想不到的效果~添加后的格式为：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">title: &#123; &#123; title &#125; &#125;</span><br><span class="line">date: &#123; &#123; date &#125; &#125;</span><br><span class="line">tags: #空一格写标签</span><br><span class="line">categories: #空一格写分类</span><br><span class="line">photos:</span><br><span class="line">- http:// #图片网址</span><br><span class="line">- http:// #图片网址</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="参考资料：">参考资料：</h1><ol>
+<li><a href="http://zipperary.com/categories/hexo/" target="_blank" rel="external">Zipperary的hexo系列教程</a></li>
+<li><a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">不如</a></li>
+<li><a href="http://zespia.tw/blog/2012/10/11/hexo-debut/" target="_blank" rel="external">tommy：Hexo 颯爽登場</a></li>
+<li><a href="https://github.com/tommy351/hexo" target="_blank" rel="external">tommy351的github</a></li>
+</ol>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Blog/" rel="tag">#Blog</a>
+          
+            <a href="/tags/程序员初级修炼/" rel="tag">#程序员初级修炼</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/28/JAVA遇到的问题-集合的深克隆/" rel="prev">集合的深克隆</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/10/SQL学习-Part4-SQL高级语法/" rel="next">4.SQL学习：SQL高级语法</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/04/16/搭建自己的Blog_hexo/"
+                   data-title="搭建自己的Blog:hexo" data-url="http://askingwindy.github.io/2015/04/16/搭建自己的Blog_hexo/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://askingwindy-gitcafe.qiniudn.com/touxiang.png" alt="Askingwindy" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Askingwindy</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">世界尽头与冷酷仙境</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/askingwindy?tab=repositories" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://askingwindy.gitbooks.io/gitbook-java-interview-note/content/" target="_blank">Java面试准备</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo简介"><span class="nav-number">1.</span> <span class="nav-text">hexo简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo管理blog的流程"><span class="nav-number">1.1.</span> <span class="nav-text">hexo管理blog的流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建新的文章"><span class="nav-number">1.1.1.</span> <span class="nav-text">创建新的文章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新本地blog"><span class="nav-number">1.1.2.</span> <span class="nav-text">更新本地blog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地查看blog"><span class="nav-number">1.1.3.</span> <span class="nav-text">本地查看blog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在网上更新自己的blog"><span class="nav-number">1.1.4.</span> <span class="nav-text">在网上更新自己的blog</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用hexo的前期准备"><span class="nav-number">2.</span> <span class="nav-text">使用hexo的前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#win8下搭建hexo环境"><span class="nav-number">2.1.</span> <span class="nav-text">win8下搭建hexo环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Git_bash"><span class="nav-number">2.1.1.</span> <span class="nav-text">安装Git bash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Node-js"><span class="nav-number">2.1.2.</span> <span class="nav-text">安装Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo"><span class="nav-number">2.1.3.</span> <span class="nav-text">安装hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ubuntu下搭建hexo环境"><span class="nav-number">2.2.</span> <span class="nav-text">ubuntu下搭建hexo环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装git"><span class="nav-number">2.2.1.</span> <span class="nav-text">安装git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Node-js-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">安装Node.js</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#command_not_found"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">command not found</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装hexo-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">安装hexo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#在本地利用hexo搭建blog"><span class="nav-number">3.</span> <span class="nav-text">在本地利用hexo搭建blog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#初始化本地blog"><span class="nav-number">3.1.</span> <span class="nav-text">初始化本地blog</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#本地查看自己博客"><span class="nav-number">3.1.1.</span> <span class="nav-text">本地查看自己博客</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本地Blog发布到网上"><span class="nav-number">4.</span> <span class="nav-text">本地Blog发布到网上</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Github"><span class="nav-number">4.1.</span> <span class="nav-text">Github</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注册"><span class="nav-number">4.1.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进入账户设置"><span class="nav-number">4.1.2.</span> <span class="nav-text">进入账户设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#产生一个新的SSH"><span class="nav-number">4.1.2.1.</span> <span class="nav-text">产生一个新的SSH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试"><span class="nav-number">4.1.2.2.</span> <span class="nav-text">测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#设置用户信息"><span class="nav-number">4.1.2.2.1.</span> <span class="nav-text">设置用户信息</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网站上新建项目"><span class="nav-number">4.1.3.</span> <span class="nav-text">网站上新建项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#回到本地blog"><span class="nav-number">4.1.4.</span> <span class="nav-text">回到本地blog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后部署"><span class="nav-number">4.1.5.</span> <span class="nav-text">最后部署</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">4.1.6.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#购买域名"><span class="nav-number">4.2.</span> <span class="nav-text">购买域名</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo的优化"><span class="nav-number">5.</span> <span class="nav-text">hexo的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加评论框"><span class="nav-number">5.1.</span> <span class="nav-text">添加评论框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#其他主题添加评论框"><span class="nav-number">5.1.1.</span> <span class="nav-text">其他主题添加评论框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更换主题"><span class="nav-number">5.2.</span> <span class="nav-text">更换主题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#其他bug（新版的hexo已修正）"><span class="nav-number">5.2.1.</span> <span class="nav-text">其他bug（新版的hexo已修正）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#landscape主题"><span class="nav-number">5.2.2.</span> <span class="nav-text">landscape主题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最新的landscape中，已经没有comment-ejs，这个评论功能合并到了同目录下的article-ejs"><span class="nav-number">5.2.2.1.</span> <span class="nav-text">最新的landscape中，已经没有comment.ejs，这个评论功能合并到了同目录下的article.ejs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引用的格式修改"><span class="nav-number">5.2.2.2.</span> <span class="nav-text">引用的格式修改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他主题"><span class="nav-number">5.2.3.</span> <span class="nav-text">其他主题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TKL主题"><span class="nav-number">5.2.3.1.</span> <span class="nav-text">TKL主题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NEXT主题"><span class="nav-number">5.2.3.2.</span> <span class="nav-text">NEXT主题</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo中的特殊格式"><span class="nav-number">6.</span> <span class="nav-text">Hexo中的特殊格式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#写文章"><span class="nav-number">6.1.</span> <span class="nav-text">写文章</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义模板"><span class="nav-number">6.1.1.</span> <span class="nav-text">自定义模板</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入图片"><span class="nav-number">6.1.2.</span> <span class="nav-text">插入图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入超链接"><span class="nav-number">6.1.3.</span> <span class="nav-text">插入超链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文章摘要"><span class="nav-number">6.1.4.</span> <span class="nav-text">文章摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#fancybox"><span class="nav-number">6.1.5.</span> <span class="nav-text">fancybox</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料："><span class="nav-number">7.</span> <span class="nav-text">参考资料：</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Askingwindy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"askingwindy"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

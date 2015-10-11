@@ -1,0 +1,830 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="世界尽头与冷酷仙境" />
+
+
+
+  <meta name="keywords" content="SQL," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="主要学习了多表连接查询：`LEFT JOIN`、`RIGHT JOIN`、`INNER JOIN` 以及视图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3.SQL学习：多表连接">
+<meta property="og:url" content="http://askingwindy.github.io/2015/04/09/SQL学习-Part3-多表连接/index.html">
+<meta property="og:site_name" content="猫生">
+<meta property="og:description" content="主要学习了多表连接查询：`LEFT JOIN`、`RIGHT JOIN`、`INNER JOIN` 以及视图">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3.SQL学习：多表连接">
+<meta name="twitter:description" content="主要学习了多表连接查询：`LEFT JOIN`、`RIGHT JOIN`、`INNER JOIN` 以及视图">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 3.SQL学习：多表连接 | 猫生 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">猫生</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '1LvasUPewmMcTCMJXJmZ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              3.SQL学习：多表连接
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-04-09T10:36:30+08:00" content="2015-04-09">
+            2015-04-09
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/SQL基础知识/" itemprop="url" rel="index">
+                  <span itemprop="name">SQL基础知识</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/04/09/SQL学习-Part3-多表连接/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/09/SQL学习-Part3-多表连接/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="Pre：表">Pre：表</h1><p>一张表就是一个集合，一行数据是集合的一个元素</p>
+<ul>
+<li>理论上讲，不可能出现完全相同的两个行（所以union去重复了）</li>
+<li>但是，表中可以存在完全的两行（表内部的rowid是不可重复的，这个rowid看不见）</li>
+<li>集合相乘，就是笛卡尔积，两个集合的完全组合</li>
+</ul>
+<hr>
+<h1 id="连接查询">连接查询</h1><ol>
+<li>两个表连接在一起</li>
+<li>连接条件</li>
+</ol>
+<h2 id="语法">语法</h2><h3 id="左连接(LEFT_JOIN)">左连接(LEFT JOIN)</h3><p>以左表为准，去右表找匹配数据</p>
+<ul>
+<li>找不到用NULL补齐</li>
+<li>表A LEFT JOIN 表B = 表B RIGHT JOIN 表A</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span>  列<span class="number">1</span>， 列<span class="number">2</span>， 列N <span class="keyword">FROM</span></span><br><span class="line">tableA <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> tableB</span><br><span class="line"><span class="keyword">ON</span> tableA.列 = tableB.列 #此处表连接成为一张大表，完全当成普通表看</span><br><span class="line">#后面可加 <span class="keyword">WHERE</span>, <span class="keyword">GROUP</span> <span class="keyword">BY</span>, <span class="keyword">HAVING</span>, <span class="keyword">ORDER</span> <span class="keyword">BY</span>, <span class="keyword">LIMIT</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="右连接(RIGHT_JOIN)">右连接(RIGHT JOIN)</h3><p>左连接：A站在B的左边，以A为准<br>右连接：B站在A的右边，以A为准</p>
+<h4 id="如何记忆">如何记忆</h4><ol>
+<li>可以把右连接转换为左连接</li>
+<li>推荐把右连接转化为左连接（推荐使用左连接代替右连接）</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span>  列<span class="number">1</span>， 列<span class="number">2</span>， 列N <span class="keyword">FROM</span></span><br><span class="line">tableA <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> tableB</span><br><span class="line"><span class="keyword">ON</span> tableA.列 = tableB.列</span></span><br></pre></td></tr></table></figure>
+<h3 id="内连接(INNER_JOIN)">内连接(INNER JOIN)</h3><p>查询左右表都有的数据，即不要左/右中NULL的那一部分。<br>内连接是左右连接的交集</p>
+<h3 id="外连接OUTER_JOIN">外连接OUTER JOIN</h3><ul>
+<li>查出左右连接的并集</li>
+<li>可以用UNION达到目的（左连接UNION右连接）</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span>  列<span class="number">1</span>， 列<span class="number">2</span>， 列N <span class="keyword">FROM</span></span><br><span class="line">tableA <span class="keyword">INNER</span> <span class="keyword">JOIN</span> tableB</span><br><span class="line"><span class="keyword">ON</span> tableA.列 = tableB.列</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="面试题">面试题</h2><p>Match赛程表：</p>
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>字段类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>matchId</td>
+<td>int</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>hostTeamId</td>
+<td>int</td>
+<td>主队ID</td>
+</tr>
+<tr>
+<td>guestTeamId</td>
+<td>int</td>
+<td>客队ID</td>
+</tr>
+<tr>
+<td>matchResult</td>
+<td>varchar(20)</td>
+<td>比赛结果，如:(2:0)</td>
+</tr>
+<tr>
+<td>matchTime</td>
+<td>date</td>
+<td>比赛开始时间</td>
+</tr>
+</tbody>
+</table>
+<p>Team参赛队伍表：</p>
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>字段类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>teamId</td>
+<td>int</td>
+<td>主键</td>
+</tr>
+<tr>
+<td>teamName</td>
+<td>varchar(10)</td>
+<td>队伍名称</td>
+</tr>
+</tbody>
+</table>
+<p>Match的hostTeamID与Team中的teamId关联<br>查出2006-6-1到2007-7-1之间举行的所有比赛，并且用一下形式列出：</p>
+<table>
+<thead>
+<tr>
+<th>hostTeamId</th>
+<th>matchResult</th>
+<th>guestTeamId</th>
+<th>matchTime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>拜仁</td>
+<td>2:0</td>
+<td>不莱梅</td>
+<td>2006-06-21</td>
+</tr>
+</tbody>
+</table>
+<h3 id="创建表">创建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#创建表并插入数据</span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> m(</span><br><span class="line">matchid <span class="built_in">int</span> <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">hid <span class="built_in">int</span>,</span><br><span class="line">gid <span class="built_in">int</span>,</span><br><span class="line">result <span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">mtime <span class="built_in">date</span></span><br><span class="line">);</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> m</span><br><span class="line">(hid, gid, result, mtime)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>,<span class="number">2</span>,<span class="string">'2:0'</span>,<span class="string">'2006-05-21'</span>),</span><br><span class="line">(<span class="number">2</span>,<span class="number">3</span>,<span class="string">'1:2'</span>,<span class="string">'2006-06-21'</span>),</span><br><span class="line">(<span class="number">3</span>,<span class="number">1</span>,<span class="string">'2:5'</span>,<span class="string">'2006-06-25'</span>),</span><br><span class="line">(<span class="number">2</span>,<span class="number">1</span>,<span class="string">'4:2'</span>,<span class="string">'2006-07-21'</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t(</span><br><span class="line">tid <span class="built_in">int</span>,</span><br><span class="line">tname <span class="built_in">varchar</span>(<span class="number">10</span>)</span><br><span class="line">);</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="string">'国安'</span>),</span><br><span class="line">(<span class="number">2</span>, <span class="string">'申花'</span>),</span><br><span class="line">(<span class="number">3</span>, <span class="string">'全兴'</span>);</span></span><br></pre></td></tr></table></figure>
+<h3 id="解题步骤">解题步骤</h3><p>将问题分解为小问题</p>
+<h4 id="1：先弄对输出顺序">1：先弄对输出顺序</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> hid, result, gid, mtime <span class="keyword">FROM</span> m;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2：再取出主队名字">2：再取出主队名字</h4><p>做连接<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> hid, tname <span class="keyword">AS</span> hname, result, gid,mtime </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">m <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> t</span><br><span class="line"><span class="keyword">ON</span> m.hid = t.tid;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="3：再取出客队名字">3：再取出客队名字</h4><p>再一次左连接<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> hid, t1.tname <span class="keyword">AS</span> hname, result, gid, t2.tname <span class="keyword">AS</span> gname, mtime </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">m <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> t <span class="keyword">AS</span> t1</span><br><span class="line"><span class="keyword">ON</span> m.hid = t1.tid</span><br><span class="line">#左连接两次</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> t <span class="keyword">AS</span> t2</span><br><span class="line"><span class="keyword">ON</span> m.gid = t2.tid;</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="4:限制时间">4:限制时间</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> hid, t1.tname <span class="keyword">AS</span> hname, result, gid, t2.tname <span class="keyword">AS</span> gname, mtime </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">m <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> t <span class="keyword">AS</span> t1</span><br><span class="line"><span class="keyword">ON</span> m.hid = t1.tid</span><br><span class="line"></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> t <span class="keyword">AS</span> t2</span><br><span class="line"><span class="keyword">ON</span> m.gid = t2.tid</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> mtime </span><br><span class="line"><span class="keyword">BETWEEN</span> <span class="string">'2006-06-01'</span> <span class="keyword">AND</span> <span class="string">'2006-07-01'</span>;</span></span><br></pre></td></tr></table></figure>
+<h4 id="5:输出格式更改">5:输出格式更改</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> t1.tname <span class="keyword">AS</span> hname, result, t2.tname <span class="keyword">AS</span> gname, mtime </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">m <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> t <span class="keyword">AS</span> t1</span><br><span class="line"><span class="keyword">ON</span> m.hid = t1.tid</span><br><span class="line"></span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> t <span class="keyword">AS</span> t2</span><br><span class="line"><span class="keyword">ON</span> m.gid = t2.tid</span><br><span class="line"></span><br><span class="line"><span class="keyword">WHERE</span> mtime </span><br><span class="line"><span class="keyword">BETWEEN</span> <span class="string">'2006-06-01'</span> <span class="keyword">AND</span> <span class="string">'2006-07-01'</span>;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="视图">视图</h1><p>视图是由查询结果形成的一张虚拟表</p>
+<h2 id="语法-1">语法</h2><h3 id="创建视图">创建视图</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> 视图名</span><br><span class="line"><span class="keyword">AS</span> <span class="keyword">SELECT</span> 语句</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除视图">删除视图</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DRIP VIEW 视图名</span><br></pre></td></tr></table></figure>
+<h3 id="修改视图">修改视图</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">VIEW</span> 视图名 </span><br><span class="line"><span class="keyword">AS</span> <span class="keyword">SELECT</span> 语句</span></span><br></pre></td></tr></table></figure>
+<h2 id="视图的作用">视图的作用</h2><ol>
+<li>简化查询</li>
+<li>进行权限控制<ul>
+<li>把表的权限封闭，但是开放相应的视图权限，视图只开放部分数据</li>
+</ul>
+</li>
+<li>大数据分表时用到<ul>
+<li>表的行数超过200w，速度很慢==&gt;把1张表的数据拆成4张表来存放</li>
+</ul>
+</li>
+</ol>
+<h2 id="视图的algorithm">视图的algorithm</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> ALGORITHM = 规则 <span class="keyword">VIEW</span> 视图名 ...</span></span><br></pre></td></tr></table></figure>
+<h3 id="MERGE"><code>MERGE</code></h3><p>当引用视图时，引用视图的语句与定义视图的语句合并</p>
+<ul>
+<li>当查询视图时，把查询视图的语句（<code>WHERE</code>那些）与创建视图的语句合并，分析形成一条新的<code>SELECT</code>语句</li>
+</ul>
+<h3 id="TEMPTABLE"><code>TEMPTABLE</code></h3><p>当引用视图时，根据视图的创建语句建立一张临时表<br>然后查询视图的语句==从这张临时表查看数据</p>
+<h3 id="UNDEFINED"><code>UNDEFINED</code></h3><p>未定义，系统选定</p>
+<h2 id="视图与表的关系">视图与表的关系</h2><p>视图是表的查询结果，所以表的数据改变会影响视图的结果</p>
+<h3 id="如果视图改变了呢？">如果视图改变了呢？</h3><ol>
+<li>视图的增删改也会影响表</li>
+<li>但是视图并不总是能增删改：只有视图的数据与表的数据一一对应时才可以修改</li>
+<li>对于<code>INSERT</code>还需要注意：视图必须包含表中没有默认值的列</li>
+</ol>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag">#SQL</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/10/SQL学习-Part4-SQL高级语法/" rel="prev">4.SQL学习：SQL高级语法</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/05/SQL学习-Part2-SQL基本操作/" rel="next">2.SQL学习：SQL基本操作</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/04/09/SQL学习-Part3-多表连接/"
+                   data-title="3.SQL学习：多表连接" data-url="http://askingwindy.github.io/2015/04/09/SQL学习-Part3-多表连接/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://askingwindy-gitcafe.qiniudn.com/touxiang.png" alt="Askingwindy" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Askingwindy</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">世界尽头与冷酷仙境</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/askingwindy?tab=repositories" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://askingwindy.gitbooks.io/gitbook-java-interview-note/content/" target="_blank">Java面试准备</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre：表"><span class="nav-number">1.</span> <span class="nav-text">Pre：表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#连接查询"><span class="nav-number">2.</span> <span class="nav-text">连接查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#左连接(LEFT_JOIN)"><span class="nav-number">2.1.1.</span> <span class="nav-text">左连接(LEFT JOIN)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#右连接(RIGHT_JOIN)"><span class="nav-number">2.1.2.</span> <span class="nav-text">右连接(RIGHT JOIN)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何记忆"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">如何记忆</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内连接(INNER_JOIN)"><span class="nav-number">2.1.3.</span> <span class="nav-text">内连接(INNER JOIN)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#外连接OUTER_JOIN"><span class="nav-number">2.1.4.</span> <span class="nav-text">外连接OUTER JOIN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面试题"><span class="nav-number">2.2.</span> <span class="nav-text">面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建表"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题步骤"><span class="nav-number">2.2.2.</span> <span class="nav-text">解题步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1：先弄对输出顺序"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">1：先弄对输出顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2：再取出主队名字"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">2：再取出主队名字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3：再取出客队名字"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">3：再取出客队名字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4:限制时间"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">4:限制时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5:输出格式更改"><span class="nav-number">2.2.2.5.</span> <span class="nav-text">5:输出格式更改</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图"><span class="nav-number">3.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法-1"><span class="nav-number">3.1.</span> <span class="nav-text">语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建视图"><span class="nav-number">3.1.1.</span> <span class="nav-text">创建视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除视图"><span class="nav-number">3.1.2.</span> <span class="nav-text">删除视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改视图"><span class="nav-number">3.1.3.</span> <span class="nav-text">修改视图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图的作用"><span class="nav-number">3.2.</span> <span class="nav-text">视图的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图的algorithm"><span class="nav-number">3.3.</span> <span class="nav-text">视图的algorithm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MERGE"><span class="nav-number">3.3.1.</span> <span class="nav-text">MERGE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TEMPTABLE"><span class="nav-number">3.3.2.</span> <span class="nav-text">TEMPTABLE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UNDEFINED"><span class="nav-number">3.3.3.</span> <span class="nav-text">UNDEFINED</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图与表的关系"><span class="nav-number">3.4.</span> <span class="nav-text">视图与表的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如果视图改变了呢？"><span class="nav-number">3.4.1.</span> <span class="nav-text">如果视图改变了呢？</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Askingwindy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"askingwindy"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

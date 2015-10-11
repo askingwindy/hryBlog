@@ -1,0 +1,828 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="世界尽头与冷酷仙境" />
+
+
+
+  <meta name="keywords" content="SQL," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="主要学习了SQL表的数值类型以及时间戳的表达、运算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1.SQL学习：SQL列类型">
+<meta property="og:url" content="http://askingwindy.github.io/2015/04/03/SQL学习-Part1-SQL列类型/index.html">
+<meta property="og:site_name" content="猫生">
+<meta property="og:description" content="主要学习了SQL表的数值类型以及时间戳的表达、运算">
+<meta property="og:image" content="http://askingwindy-gitcafe.qiniudn.com/decimal与float对比.png">
+<meta property="og:image" content="http://askingwindy-gitcafe.qiniudn.com/year.png">
+<meta property="og:image" content="http://askingwindy-gitcafe.qiniudn.com/date.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="1.SQL学习：SQL列类型">
+<meta name="twitter:description" content="主要学习了SQL表的数值类型以及时间戳的表达、运算">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 1.SQL学习：SQL列类型 | 猫生 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">猫生</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '1LvasUPewmMcTCMJXJmZ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              1.SQL学习：SQL列类型
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-04-03T10:36:30+08:00" content="2015-04-03">
+            2015-04-03
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/SQL基本知识/" itemprop="url" rel="index">
+                  <span itemprop="name">SQL基本知识</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/04/03/SQL学习-Part1-SQL列类型/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/03/SQL学习-Part1-SQL列类型/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="列">列</h1><p>不同列类型占用的空间不同</p>
+<ul>
+<li>选列的原则：够用、不浪费</li>
+<li>一般不采用枚举：<ul>
+<li>违背了关心数据库的设计原则</li>
+<li>列应该代表无法再分割的一项</li>
+</ul>
+</li>
+</ul>
+<h2 id="列类型">列类型</h2><h3 id="数值型">数值型</h3><h4 id="整型">整型</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>字节</th>
+<th>位</th>
+<th>无符号</th>
+<th>有符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TINYINT</code></td>
+<td>1</td>
+<td>8</td>
+<td>$[0, 2^8-1]$</td>
+<td>$[-2^7,2^7-1]$</td>
+</tr>
+<tr>
+<td><code>SMALLINT</code></td>
+<td>2</td>
+<td>16</td>
+<td>$[0,2^{16}-1]$</td>
+<td>$[-2^{15}, 2^{15}-1]$</td>
+</tr>
+<tr>
+<td><code>MEDIUMINT</code></td>
+<td>3</td>
+<td>24</td>
+<td>$[0,2^{24}-1]$</td>
+<td>$[-2^{23}, 2^{23}-1]$</td>
+</tr>
+<tr>
+<td><code>INT</code></td>
+<td>4</td>
+<td>32</td>
+<td>$[0,2^{32}-1]$</td>
+<td>$[-2^{31}, 2^{31}-1]$</td>
+</tr>
+<tr>
+<td><code>BIGINT</code></td>
+<td>8</td>
+<td>64</td>
+<td>$[0,2^{64}-1]$</td>
+<td>$[-2^{63}, 2^{63}-1]$</td>
+</tr>
+</tbody>
+</table>
+<h5 id="可选属性">可选属性</h5><table>
+<thead>
+<tr>
+<th>符号</th>
+<th>意义</th>
+<th>其他</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>M</code></td>
+<td>宽度</td>
+<td><strong>仅</strong>在ZEROFILL时才有意义</td>
+</tr>
+<tr>
+<td><code>UNSIGNED</code></td>
+<td>无符号类型</td>
+</tr>
+<tr>
+<td><code>ZEFOFILL</code></td>
+<td>0填充</td>
+<td>默认为UNSIGNED</td>
+</tr>
+<tr>
+<td><code>DEFAULT</code></td>
+<td>列的默认值</td>
+<td>默认为NULL，只能用固定语法对NULL进行比较：NULL IS NULL；所以推荐声明为：NOT NULL DEFAULT 0</td>
+</tr>
+</tbody>
+</table>
+<h4 id="小数型">小数型</h4><h5 id="浮点型">浮点型</h5><h6 id="语法">语法</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLOAT (M, D)</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<ul>
+<li>M： 精度，表示总的位数（整数位+小数位）</li>
+<li>D：标度，小数位<h6 id="实例">实例</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLOAT(6,2) #表示范围：-9999.99 ~ 9999.99</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="四舍五入规则">四舍五入规则</h6><ul>
+<li>5前面是1379则“舍”</li>
+<li>5前面是2468则“进”<h5 id="定点型">定点型</h5><h6 id="语法-1">语法</h6><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DECIMAL (M, D)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="与FLOAT比较">与FLOAT比较</h5><ul>
+<li>精度更高，实用于货币</li>
+<li><img src="http://askingwindy-gitcafe.qiniudn.com/decimal与float对比.png" alt="与`FLOAT`对比"><h3 id="字符型">字符型</h3>|类型|说明|典型声明方式|范围|<br>|—-|—-|—-|—-|<br>|<code>CHAR</code>|定长字符串（不够空格补齐）|<code>gender CHAR(1)</code>|$CHAR(M),0&lt;=M&lt;=255字符$|<br>|<code>VARCHAR</code>|变长字符串|<code>email VARCHAR(20)</code>|$VARCHAR(M), 0&lt;=M&lt;=65535$,    注释：如果值的长度大于255，将被转化为TEXT类型|<br>|<code>TEXT</code>|文本串|<code>content TEXT</code>|约2w~6w个字符，受字符集影响|<h4 id="CHAR与VARCHAR"><code>CHAR</code>与<code>VARCHAR</code></h4><h5 id="性能比较">性能比较</h5></li>
+<li>在字符长度一定时，<code>CHAR</code>性能比<code>VARCHAR</code>好</li>
+<li>长度不确定时，<code>CHAR</code>类型的字段在使用时性能略差<h5 id="区别">区别</h5></li>
+</ul>
+<ol>
+<li>M值得范围不同</li>
+<li>空间利用率不同</li>
+<li>末尾空格存储方式不同</li>
+<li>速度上，<code>CHAR</code>更快<h3 id="日期/时间类型">日期/时间类型</h3><h4 id="YEAR年类型"><code>YEAR</code>年类型</h4></li>
+</ol>
+<ul>
+<li>1个字节</li>
+<li>范围为:$[1901,2155]$年，$0000$表示错误的时间</li>
+<li>一般输入为4位数字，如果输入为2位数字：<ul>
+<li>$[00,69]$年表示$[2000,2069]$年</li>
+<li>否则表示$[1970,1999]$年<br><img src="http://askingwindy-gitcafe.qiniudn.com/year.png" alt="year输入与显式"><h4 id="DATE日期类型"><code>DATE</code>日期类型</h4></li>
+</ul>
+</li>
+<li>范围为:$[1000-01-01,9999-12-31]$</li>
+<li>典型格式为：1992-08-12</li>
+<li><img src="http://askingwindy-gitcafe.qiniudn.com/date.png" alt="DATE的输入与显式"><h4 id="TIME时间类型"><code>TIME</code>时间类型</h4></li>
+<li>范围不止24小时，因为可以表示两个时间只差：$[-838:59:59, 838:59:59]$</li>
+<li>典型格式为：hh:mm:ss<h3 id="DATETIME日期时间类型"><code>DATETIME</code>日期时间类型</h3><ul>
+<li>典型格式为：1989-05-06 14:32:08</li>
+<li>开发中，很少用<code>DATETIME</code>表示一个需要精确到秒的列，往往用<strong>时间戳</strong>表示<h3 id="时间戳">时间戳</h3></li>
+</ul>
+</li>
+<li>计算从1970-01-01 00:00:00到当前的秒数</li>
+<li>方便计算：用<code>INT</code>存储时间戳</li>
+<li>对于显式：通过函数进行格式化<h4 id="UNIX_TIMESTAMP()获得时间戳"><code>UNIX_TIMESTAMP()</code>获得时间戳</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#返回现在的时间戳，例如：1428843853</span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">UNIX_TIMESTAMP</span>();</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>将<code>DATE</code>或者<code>DATETIME</code>转化为时间戳<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">UNIX_TIMESTAMP</span>(<span class="string">'1991-11-05'</span>);</span>#DATE转化为时间戳</span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">UNIX_TIMESTAMP</span>(<span class="string">'1991-11-05 0:0:0'</span>);</span>#DATETIME转化为时间戳</span><br></pre></td></tr></table></figure></p>
+<h4 id="FROM_UNIXTIME(UNIX_TIMESTAMP,_FORMAT)将时间戳转化为时间"><code>FROM_UNIXTIME(UNIX_TIMESTAMP, FORMAT)</code>将时间戳转化为时间</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">FROM_UNIXTIME</span>(<span class="keyword">UNIX_TIMESTAMP</span>());</span>#显式现在时间，默认格式为:'2015-04-08 21:32:30'</span><br></pre></td></tr></table></figure>
+<p>其中，FORMAT可以包含与<code>DATE_FORMAT()</code>函数输入项列表相同的说明符</p>
+<h4 id="关于时间的计算">关于时间的计算</h4><h5 id="DATEDIFF(exp1,_exp2)"><code>DATEDIFF(exp1, exp2)</code></h5><p>返回开始时间exp1与结束时间exp2之间的天数，exp1/exp2可能是DATE或者DATETIME，计算时值用到日期部分<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">DATEDIFF</span>(’<span class="number">1997</span>-<span class="number">12</span>-<span class="number">31</span> <span class="number">23</span>:<span class="number">59</span>:<span class="number">59</span>′,’<span class="number">1997</span>-<span class="number">12</span>-<span class="number">30</span>′);</span>#返回1</span><br><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">DATEDIFF</span>(’<span class="number">1997</span>-<span class="number">11</span>-<span class="number">30</span> <span class="number">23</span>:<span class="number">59</span>:<span class="number">59</span>′,’<span class="number">1997</span>-<span class="number">12</span>-<span class="number">31</span>′);</span>#返回-31</span><br></pre></td></tr></table></figure></p>
+<h5 id="ADDDATE(exp,_days)"><code>ADDDATE(exp, days)</code></h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> <span class="keyword">ADDDATE</span>(,<span class="number">1998</span>-<span class="number">01</span>-<span class="number">02</span><span class="string">',31);#输出为1998-02-02</span></span></span><br></pre></td></tr></table></figure>
+<p>同理，用函数<code>ADDTIME(exp1, exp2)</code>可以使用</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag">#SQL</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/05/SQL学习-Part2-SQL基本操作/" rel="prev">2.SQL学习：SQL基本操作</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/03/01/Git方法_搭建GIT服务器/" rel="next">搭建GIT服务器</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/04/03/SQL学习-Part1-SQL列类型/"
+                   data-title="1.SQL学习：SQL列类型" data-url="http://askingwindy.github.io/2015/04/03/SQL学习-Part1-SQL列类型/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://askingwindy-gitcafe.qiniudn.com/touxiang.png" alt="Askingwindy" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Askingwindy</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">世界尽头与冷酷仙境</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/askingwindy?tab=repositories" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://askingwindy.gitbooks.io/gitbook-java-interview-note/content/" target="_blank">Java面试准备</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#列"><span class="nav-number">1.</span> <span class="nav-text">列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#列类型"><span class="nav-number">1.1.</span> <span class="nav-text">列类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数值型"><span class="nav-number">1.1.1.</span> <span class="nav-text">数值型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整型"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">整型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#可选属性"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">可选属性</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小数型"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">小数型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#浮点型"><span class="nav-number">1.1.1.2.1.</span> <span class="nav-text">浮点型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法"><span class="nav-number">1.1.1.2.1.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#实例"><span class="nav-number">1.1.1.2.1.2.</span> <span class="nav-text">实例</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#四舍五入规则"><span class="nav-number">1.1.1.2.1.3.</span> <span class="nav-text">四舍五入规则</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定点型"><span class="nav-number">1.1.1.2.2.</span> <span class="nav-text">定点型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法-1"><span class="nav-number">1.1.1.2.2.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#与FLOAT比较"><span class="nav-number">1.1.1.2.3.</span> <span class="nav-text">与FLOAT比较</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符型"><span class="nav-number">1.1.2.</span> <span class="nav-text">字符型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CHAR与VARCHAR"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">CHAR与VARCHAR</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#性能比较"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">性能比较</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#区别"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期/时间类型"><span class="nav-number">1.1.3.</span> <span class="nav-text">日期/时间类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#YEAR年类型"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">YEAR年类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DATE日期类型"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">DATE日期类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TIME时间类型"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">TIME时间类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DATETIME日期时间类型"><span class="nav-number">1.1.4.</span> <span class="nav-text">DATETIME日期时间类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#时间戳"><span class="nav-number">1.1.5.</span> <span class="nav-text">时间戳</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#UNIX_TIMESTAMP()获得时间戳"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">UNIX_TIMESTAMP()获得时间戳</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FROM_UNIXTIME(UNIX_TIMESTAMP,_FORMAT)将时间戳转化为时间"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">FROM_UNIXTIME(UNIX_TIMESTAMP, FORMAT)将时间戳转化为时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于时间的计算"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">关于时间的计算</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DATEDIFF(exp1,_exp2)"><span class="nav-number">1.1.5.3.1.</span> <span class="nav-text">DATEDIFF(exp1, exp2)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ADDDATE(exp,_days)"><span class="nav-number">1.1.5.3.2.</span> <span class="nav-text">ADDDATE(exp, days)</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Askingwindy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"askingwindy"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

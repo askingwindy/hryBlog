@@ -1,0 +1,755 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="世界尽头与冷酷仙境" />
+
+
+
+  <meta name="keywords" content="SQL基本知识," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="SQL表的建立、数据的增删改查以及列的增删改，重点学习了查询关键字，包括了普通的WHERE, GROUP BY,  HAVING,ORDER BY, LIMIT，以及子查询">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.SQL学习：SQL基本操作">
+<meta property="og:url" content="http://askingwindy.github.io/2015/04/05/SQL学习-Part2-SQL基本操作/index.html">
+<meta property="og:site_name" content="猫生">
+<meta property="og:description" content="SQL表的建立、数据的增删改查以及列的增删改，重点学习了查询关键字，包括了普通的WHERE, GROUP BY,  HAVING,ORDER BY, LIMIT，以及子查询">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2.SQL学习：SQL基本操作">
+<meta name="twitter:description" content="SQL表的建立、数据的增删改查以及列的增删改，重点学习了查询关键字，包括了普通的WHERE, GROUP BY,  HAVING,ORDER BY, LIMIT，以及子查询">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 2.SQL学习：SQL基本操作 | 猫生 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">猫生</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '1LvasUPewmMcTCMJXJmZ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              2.SQL学习：SQL基本操作
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-04-05T21:36:30+08:00" content="2015-04-05">
+            2015-04-05
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/SQL/" itemprop="url" rel="index">
+                  <span itemprop="name">SQL</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/04/05/SQL学习-Part2-SQL基本操作/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/05/SQL学习-Part2-SQL基本操作/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="对表的操作">对表的操作</h1><h2 id="建表">建表</h2><h3 id="语法">语法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> 表名(</span><br><span class="line">列名称 列类型 [列属性] [默认值],#[]里的内容表示可选</span><br><span class="line">...</span><br><span class="line">);</span></span><br></pre></td></tr></table></figure>
+<h3 id="实例">实例</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> class1(</span><br><span class="line">id <span class="built_in">INT</span> <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> AUTO_INCREMENT,</span><br><span class="line">name <span class="built_in">CHAR</span>(<span class="number">6</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">''</span>,</span><br><span class="line">age TINYINT UNSIGNED <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0</span>,</span><br><span class="line">email <span class="built_in">VARCHAR</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">''</span>,</span><br><span class="line">salary <span class="built_in">DECIMAL</span>(<span class="number">5</span>,<span class="number">2</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">0.00</span>,</span><br><span class="line">enroll <span class="built_in">DATE</span> <span class="keyword">NOT</span> <span class="literal">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">'2000-03-01'</span></span><br><span class="line">)<span class="keyword">CHARSET</span> UTF8;</span></span><br></pre></td></tr></table></figure>
+<h2 id="列管理">列管理</h2><h3 id="增加列">增加列</h3><h4 id="语法-1">语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名</span><br><span class="line"><span class="keyword">ADD</span> 列名 列属性</span><br><span class="line">#<span class="keyword">AFTER</span> 列名<span class="number">1</span> #将新增列放在列<span class="number">1</span>的后面</span><br><span class="line">#<span class="keyword">FIRST</span> #将新增列放在最前面</span></span><br></pre></td></tr></table></figure>
+<h3 id="修改列">修改列</h3><h4 id="语法-2">语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名</span><br><span class="line"><span class="keyword">CHANGE</span> 被改变的列声明 现在的列声明（列声明：列名+列属性）</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除列">删除列</h3><h4 id="语法-3">语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名</span><br><span class="line"><span class="keyword">DROP</span> 列名</span></span><br></pre></td></tr></table></figure>
+<h2 id="行操作">行操作</h2><h3 id="增加行">增加行</h3><p>三要素：</p>
+<ul>
+<li>往哪张表添加？</li>
+<li>给哪几列添加？</li>
+<li>分别添加什么值？<h4 id="语法-4">语法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> 表名</span><br><span class="line">(列<span class="number">1</span>, 列<span class="number">2</span>, ..., 列N)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(值<span class="number">1</span>，值<span class="number">2</span>,, ..., 值N)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果不写列，默认插入所有列(所以要写所有列的值)</p>
+<h3 id="修改行的值">修改行的值</h3><p>改哪张表？需要改哪几列的值？分别改什么值？在哪些行生效？<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">UPDATE</span> 表名</span><br><span class="line"><span class="keyword">SET</span></span><br><span class="line">列<span class="number">1</span> = 值<span class="number">1</span>，</span><br><span class="line">列<span class="number">2</span> = 值<span class="number">2</span>，</span><br><span class="line">...</span><br><span class="line">列N = 值N</span><br><span class="line"># <span class="keyword">WHERE</span> 表达式 #不写这个默认所有行</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="删除行">删除行</h3><p>只能删除整行，而不是一行中某几列的值<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">DELETE</span> 表名</span><br><span class="line"><span class="keyword">WHERE</span> 表达式</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h1 id="查询">查询</h1><p><code>SELECT</code>有5个字句（如果写了多种，关键字的顺序必须固定如下：<code>WHERE</code> ==&gt; <code>GROUP BY</code>==&gt;<code>HAVING</code>==&gt;<code>ORDER BY</code>==&gt;<code>LIMIT</code>）<br>TIPS：<br>可以用括号<code>()</code>提高关键字的优先级</p>
+<h2 id="WHERE"><code>WHERE</code></h2><p>判断每一行的表达式是否成立</p>
+<h3 id="比较运算符">比较运算符</h3><h4 id="普通的符号">普通的符号</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;,&lt;=</span><br><span class="line">=,!=</span><br><span class="line">&gt;, &gt;=</span><br></pre></td></tr></table></figure>
+<h4 id="IN在某个集合内"><code>IN</code>在某个集合内</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IN (值1, 值2, ..., 值N) #表示取出值=值，值=值2,...值=值N得所有行</span><br></pre></td></tr></table></figure>
+<h4 id="BETWEEN在某个范围内"><code>BETWEEN</code>在某个范围内</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BETWEEN 值1 AND 值2 #表示取出满足条件：值1 &lt;= 值 &lt;= 值2的所有行</span><br></pre></td></tr></table></figure>
+<h3 id="逻辑运算符">逻辑运算符</h3><ul>
+<li><code>NOT</code>:不属于某个条件的行</li>
+<li>‘OR’</li>
+<li>‘AND’<h3 id="模糊查询">模糊查询</h3><h4 id="LIKE"><code>LIKE</code></h4></li>
+<li><code>%</code>：通配任意长度的字符</li>
+<li><code>_</code>：通配单个字符<h2 id="GROUP_BY"><code>GROUP BY</code></h2>把行按<strong>字段</strong>分组<h3 id="语法-5">语法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GROUP BY 列, 列2, ..., 列N</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="运用场合">运用场合</h3><p>常见于统计场合：统计平均成绩、最高分等</p>
+<h4 id="统计函数">统计函数</h4><ul>
+<li><p><code>MAX</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> goods_id, <span class="keyword">max</span>(shop_price) <span class="keyword">FROM</span> test</span><br><span class="line">#这样写是没有意义的，这样goods_id是第一个遇见的id，而不是最大价格的goods_id</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>MIN</code></p>
+</li>
+<li><code>SUM</code></li>
+<li><code>AVG</code></li>
+<li><code>COUNT</code></li>
+</ul>
+<p>将列名当做变量名来看待，同时，可以给计算结果利用<code>AS</code>取别名</p>
+<h2 id="HAVING"><code>HAVING</code></h2><ul>
+<li><code>WHERE</code>是对表起作用，不能对查询结果（虽然结构和表一致）起作用</li>
+<li><code>HAVING</code>是继续对查询结果继续查询<h2 id="ORDER_BY"><code>ORDER BY</code></h2>默认是根据字段升序排序（<code>ASC</code>显式声明）</li>
+<li>最后加<code>DESC</code>改为降序排列<h3 id="根据多个字段进行排序">根据多个字段进行排序</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ORDER BY 列1， 列2 ...</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="LIMIT"><code>LIMIT</code></h2><p>放在语句最后，起到限制条目的作用<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LIMIT [OFFSET], [N]</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><code>OFFSET</code>:偏移量（结果不包含该值）</li>
+<li><code>N</code>：取出的条目个数<br><code>OFFSET</code>不写，相当于从第1行开始取知道取出N个数据为止<h1 id="子查询">子查询</h1>逻辑上构建一张”临时表”(这张表不存在)==&gt;将查询结果当做这张”临时表”==&gt;在这张临时表上进行子查询<h2 id="WHERE型子查询">WHERE型子查询</h2>把内层查询的结果当做外层查询的<strong>比较条件</strong><h3 id="查询每个栏目下最贵商品">查询每个栏目下最贵商品</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> goods_name, cat_id,shop_price <span class="keyword">FROM</span> test </span><br><span class="line"><span class="keyword">WHERE</span> shop_price <span class="keyword">IN</span> </span><br><span class="line">(<span class="keyword">SELECT</span> <span class="keyword">MAX</span>(shop_price) <span class="keyword">FROM</span> test <span class="keyword">GROUP</span> <span class="keyword">BY</span> cat_id);</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="FROM型子查询">FROM型子查询</h2><p>把内层查询结果当做<strong>临时表</strong>，供外层再次查询</p>
+<h2 id="EXISTS子查询">EXISTS子查询</h2><p>把外层查询结果拿到内层，看内层查询是否成立</p>
+<h1 id="良好的理解模型">良好的理解模型</h1><ul>
+<li><code>WHERE</code>表达式：把表达式放在行中，看表达式是否为真</li>
+<li>列：理解成变量，可以晕死</li>
+<li>取出结果：可以理解成一张临时表</li>
+</ul>
+<hr>
+<h1 id="练习题">练习题</h1><p>有如下的表以及数据:<br>|name|subject|score|<br>|—-|—-|—-|<br>|张三|数学|90|<br>|张三|语文|50|<br>|张三|地理|40|<br>|李四|语文|55|<br>|李四|政治|45|<br>|王五|政治|30|<br>要求：查出2门及两门以上不及格者的平均成绩</p>
+<h2 id="只利用WHERE-HAVING-GROUP">只利用<code>WHERE-HAVING-GROUP</code></h2><p>将大问题分解为小问题一步步来：</p>
+<h3 id="1-查出每个人的平均分">1.查出每个人的平均分</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> name, <span class="keyword">avg</span>(score)</span><br><span class="line"><span class="keyword">FROM</span> tableScoreGROUP <span class="keyword">BY</span> name;</span></span><br></pre></td></tr></table></figure>
+<h3 id="2-计算每个人挂科总数目">2.计算每个人挂科总数目</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> name, <span class="keyword">sum</span>(score&lt;<span class="number">60</span>)</span><br><span class="line"><span class="keyword">FROM</span> tableScore <span class="keyword">GROUP</span> <span class="keyword">BY</span> name;</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-在2的基础上找出每个人的平均分">3.在2的基础上找出每个人的平均分</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> name, <span class="keyword">sum</span>(score&lt;<span class="number">60</span>), <span class="keyword">avg</span>(score)</span><br><span class="line"><span class="keyword">FROM</span> tableScore <span class="keyword">GROUP</span> <span class="keyword">BY</span> name;</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-在3的基础上找出挂科数目&gt;=2的人">4.在3的基础上找出挂科数目&gt;=2的人</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> name, <span class="keyword">sum</span>(score&lt;<span class="number">60</span>) <span class="keyword">as</span> he, <span class="keyword">avg</span>(score)</span><br><span class="line"><span class="keyword">FROM</span> tableScore <span class="keyword">GROUP</span> <span class="keyword">BY</span> name </span><br><span class="line"><span class="keyword">HAVING</span> he &gt;=<span class="number">2</span>;</span></span><br></pre></td></tr></table></figure>
+<h2 id="利用子查询">利用子查询</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> name, <span class="keyword">avg</span>(score) <span class="keyword">FROM</span> tableScore</span><br><span class="line"><span class="keyword">WHERE</span> name <span class="keyword">IN</span></span><br><span class="line">(<span class="keyword">SELECT</span> name <span class="keyword">FROM</span></span><br><span class="line">(<span class="keyword">SELECT</span> name, <span class="keyword">sum</span>(score&lt;<span class="number">60</span>) <span class="keyword">as</span> co <span class="keyword">FROM</span> tableScore </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> name <span class="keyword">HAVING</span> co&gt;=<span class="number">2</span>) </span><br><span class="line"><span class="keyword">AS</span> tmp) </span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> name;</span></span><br></pre></td></tr></table></figure>
+<h2 id="前期准备">前期准备</h2><h3 id="建表-1">建表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tableScore(</span><br><span class="line">name <span class="built_in">VARCHAR</span>(<span class="number">4</span>),</span><br><span class="line">subject <span class="built_in">VARCHAR</span>(<span class="number">4</span>),</span><br><span class="line">score TINYINT</span><br><span class="line">);</span></span><br></pre></td></tr></table></figure>
+<h3 id="插入数据">插入数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> tableScore</span><br><span class="line">(name, subject, score)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">'张三'</span>,<span class="string">'数学'</span>,<span class="number">90</span>),</span><br><span class="line">(<span class="string">'张三'</span>,<span class="string">'语文'</span>,<span class="number">50</span>),</span><br><span class="line">(<span class="string">'张三'</span>,<span class="string">'地理'</span>,<span class="number">40</span>),</span><br><span class="line">(<span class="string">'李四'</span>,<span class="string">'语文'</span>,<span class="number">55</span>),</span><br><span class="line">(<span class="string">'李四'</span>,<span class="string">'政治'</span>,<span class="number">45</span>),</span><br><span class="line">(<span class="string">'王二'</span>,<span class="string">'政治'</span>,<span class="number">30</span>);</span></span><br><span class="line"></span><br><span class="line">#增加额外的数据</span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> tableScore</span><br><span class="line">(name, subject, score)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="string">'赵六'</span>,<span class="string">'A'</span>,<span class="number">100</span>),</span><br><span class="line">(<span class="string">'赵六'</span>,<span class="string">'A'</span>,<span class="number">80</span>),</span><br><span class="line">(<span class="string">'赵六'</span>,<span class="string">'A'</span>,<span class="number">55</span>);</span></span><br></pre></td></tr></table></figure></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL基本知识/" rel="tag">#SQL基本知识</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/09/SQL学习-Part3-多表连接/" rel="prev">3.SQL学习：多表连接</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/03/SQL学习-Part1-SQL列类型/" rel="next">1.SQL学习：SQL列类型</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/04/05/SQL学习-Part2-SQL基本操作/"
+                   data-title="2.SQL学习：SQL基本操作" data-url="http://askingwindy.github.io/2015/04/05/SQL学习-Part2-SQL基本操作/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://askingwindy-gitcafe.qiniudn.com/touxiang.png" alt="Askingwindy" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Askingwindy</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">世界尽头与冷酷仙境</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/askingwindy?tab=repositories" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://askingwindy.gitbooks.io/gitbook-java-interview-note/content/" target="_blank">Java面试准备</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#对表的操作"><span class="nav-number">1.</span> <span class="nav-text">对表的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#建表"><span class="nav-number">1.1.</span> <span class="nav-text">建表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法"><span class="nav-number">1.1.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">1.1.2.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列管理"><span class="nav-number">1.2.</span> <span class="nav-text">列管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#增加列"><span class="nav-number">1.2.1.</span> <span class="nav-text">增加列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-1"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改列"><span class="nav-number">1.2.2.</span> <span class="nav-text">修改列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-2"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除列"><span class="nav-number">1.2.3.</span> <span class="nav-text">删除列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-3"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">语法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行操作"><span class="nav-number">1.3.</span> <span class="nav-text">行操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#增加行"><span class="nav-number">1.3.1.</span> <span class="nav-text">增加行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法-4"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">语法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改行的值"><span class="nav-number">1.3.2.</span> <span class="nav-text">修改行的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除行"><span class="nav-number">1.3.3.</span> <span class="nav-text">删除行</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查询"><span class="nav-number">2.</span> <span class="nav-text">查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WHERE"><span class="nav-number">2.1.</span> <span class="nav-text">WHERE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#比较运算符"><span class="nav-number">2.1.1.</span> <span class="nav-text">比较运算符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#普通的符号"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">普通的符号</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IN在某个集合内"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">IN在某个集合内</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BETWEEN在某个范围内"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">BETWEEN在某个范围内</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逻辑运算符"><span class="nav-number">2.1.2.</span> <span class="nav-text">逻辑运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模糊查询"><span class="nav-number">2.1.3.</span> <span class="nav-text">模糊查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#LIKE"><span class="nav-number">2.1.3.1.</span> <span class="nav-text">LIKE</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GROUP_BY"><span class="nav-number">2.2.</span> <span class="nav-text">GROUP BY</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法-5"><span class="nav-number">2.2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运用场合"><span class="nav-number">2.2.2.</span> <span class="nav-text">运用场合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#统计函数"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">统计函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HAVING"><span class="nav-number">2.3.</span> <span class="nav-text">HAVING</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ORDER_BY"><span class="nav-number">2.4.</span> <span class="nav-text">ORDER BY</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#根据多个字段进行排序"><span class="nav-number">2.4.1.</span> <span class="nav-text">根据多个字段进行排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LIMIT"><span class="nav-number">2.5.</span> <span class="nav-text">LIMIT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#子查询"><span class="nav-number">3.</span> <span class="nav-text">子查询</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WHERE型子查询"><span class="nav-number">3.1.</span> <span class="nav-text">WHERE型子查询</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查询每个栏目下最贵商品"><span class="nav-number">3.1.1.</span> <span class="nav-text">查询每个栏目下最贵商品</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FROM型子查询"><span class="nav-number">3.2.</span> <span class="nav-text">FROM型子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EXISTS子查询"><span class="nav-number">3.3.</span> <span class="nav-text">EXISTS子查询</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#良好的理解模型"><span class="nav-number">4.</span> <span class="nav-text">良好的理解模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#练习题"><span class="nav-number">5.</span> <span class="nav-text">练习题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#只利用WHERE-HAVING-GROUP"><span class="nav-number">5.1.</span> <span class="nav-text">只利用WHERE-HAVING-GROUP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-查出每个人的平均分"><span class="nav-number">5.1.1.</span> <span class="nav-text">1.查出每个人的平均分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-计算每个人挂科总数目"><span class="nav-number">5.1.2.</span> <span class="nav-text">2.计算每个人挂科总数目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-在2的基础上找出每个人的平均分"><span class="nav-number">5.1.3.</span> <span class="nav-text">3.在2的基础上找出每个人的平均分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-在3的基础上找出挂科数目>=2的人"><span class="nav-number">5.1.4.</span> <span class="nav-text">4.在3的基础上找出挂科数目>=2的人</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用子查询"><span class="nav-number">5.2.</span> <span class="nav-text">利用子查询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前期准备"><span class="nav-number">5.3.</span> <span class="nav-text">前期准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#建表-1"><span class="nav-number">5.3.1.</span> <span class="nav-text">建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入数据"><span class="nav-number">5.3.2.</span> <span class="nav-text">插入数据</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Askingwindy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"askingwindy"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

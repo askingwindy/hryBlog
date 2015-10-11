@@ -1,0 +1,920 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="世界尽头与冷酷仙境" />
+
+
+
+  <meta name="keywords" content="SQL基本知识," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="主要学习了：字符集、校对集；触发器；事务；索引以及存储过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.SQL学习：SQL高级语法">
+<meta property="og:url" content="http://askingwindy.github.io/2015/04/10/SQL学习-Part4-SQL高级语法/index.html">
+<meta property="og:site_name" content="猫生">
+<meta property="og:description" content="主要学习了：字符集、校对集；触发器；事务；索引以及存储过程">
+<meta property="og:image" content="http://askingwindy-gitcafe.qiniudn.com/SQL字符集.png">
+<meta property="og:image" content="http://askingwindy-gitcafe.qiniudn.com/事务.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="4.SQL学习：SQL高级语法">
+<meta name="twitter:description" content="主要学习了：字符集、校对集；触发器；事务；索引以及存储过程">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> 4.SQL学习：SQL高级语法 | 猫生 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">猫生</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '1LvasUPewmMcTCMJXJmZ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              4.SQL学习：SQL高级语法
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2015-04-10T16:36:20+08:00" content="2015-04-10">
+            2015-04-10
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/SQL/" itemprop="url" rel="index">
+                  <span itemprop="name">SQL</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2015/04/10/SQL学习-Part4-SQL高级语法/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2015/04/10/SQL学习-Part4-SQL高级语法/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="字符集">字符集</h1><p>Mysql的字符集设置非常灵活，可以设置服务器默认的字符集</p>
+<ul>
+<li>数据库默认字符集</li>
+<li>表默认字符集</li>
+<li>列字符集</li>
+<li>某个级别没有指定的话，直接继承上一级</li>
+</ul>
+<h2 id="以表声明为UTF8为例">以表声明为UTF8为例</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> a(</span><br><span class="line">id <span class="built_in">int</span></span><br><span class="line">)<span class="keyword">CHARSET</span> UTF8;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>存储在数据表中的数据最终是UTF8</li>
+</ul>
+<h3 id="客户端与服务器">客户端与服务器</h3><p>客户端是GBK编码，服务器是UTF8编码<br><img src="http://askingwindy-gitcafe.qiniudn.com/SQL字符集.png" alt="服务器与客户端字符集"></p>
+<h4 id="SQL语句字符集">SQL语句字符集</h4><p>客户端(GBK) ===&gt; 字符集链接器(GBK(来自客户端)-&gt;GBK(连接器)-&gt;UTF8(发给服务器))===&gt;服务器（UTF8</p>
+<ol>
+<li><p>告诉服务器，我给你发送的数据是什么编码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SET</span> CHARACTER_SET_CLIENT = GBK;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>告诉连接器，转化成什么编码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SET</span> CHARACTER_SET_CONNECTION = GBK;</span>#指定的是连接器中中间的那个GBK</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询结果是什么编码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SET</span> CHARACTER_SET_RESULTS = GBK;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="什么时候出现乱码">什么时候出现乱码</h3><ol>
+<li>客户端声明的字符集与事实不符</li>
+<li>查询结果字符集与客户端页面不符合</li>
+</ol>
+<h1 id="校对集">校对集</h1><p>就是排队规则，一个字符集可以有一个或多个排序规则</p>
+<h2 id="以UTF8为例">以UTF8为例</h2><p>默认使用<code>UTF8-GENERAL-CI</code></p>
+<h3 id="如何声明校对集">如何声明校对集</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> T(</span><br><span class="line">id <span class="built_in">int</span></span><br><span class="line">)<span class="keyword">CHARSET</span> UTF8 <span class="keyword">COLLATE</span> UTF8_BIN;</span> #按二进制排序</span><br></pre></td></tr></table></figure>
+<h3 id="查看校对集">查看校对集</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SHOW</span> <span class="keyword">COLLATION</span></span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="触发器">触发器</h1><p>作用：监视某种情况，并触发某种操作</p>
+<ul>
+<li>能触发的操作：增、删、改</li>
+<li>能监视的操作：增、删、改</li>
+</ul>
+<p>应用场合：向一张表添加、删除时，需要在相关的表中进行同步</p>
+<h2 id="触发器创建四要素">触发器创建四要素</h2><table>
+<thead>
+<tr>
+<th>名字</th>
+<th>语法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>监视地点</td>
+<td>TABLE</td>
+</tr>
+<tr>
+<td>监视事件</td>
+<td>INSERT/UPDATE/DELETE</td>
+</tr>
+<tr>
+<td>触发时间</td>
+<td>AFTER/BEFORE</td>
+</tr>
+<tr>
+<td>触发事件</td>
+<td>INSERT/UPDATE/DELETE</td>
+</tr>
+</tbody>
+</table>
+<h3 id="创建触发器语法">创建触发器语法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> 触发器名字</span><br><span class="line"><span class="keyword">AFTER</span>/<span class="keyword">BEFORE</span> <span class="keyword">INSERT</span>/<span class="keyword">UPDATE</span>/<span class="keyword">DELETE</span> <span class="keyword">ON</span> 表名</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> #固定语句</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">sql</span>语句（限于增删改），一句或多句;</span></span><br><span class="line"><span class="operator"><span class="keyword">END</span> ||</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除触发器语法">删除触发器语法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">DROP</span> <span class="keyword">TRIGGER</span> 触发器名字;</span></span><br></pre></td></tr></table></figure>
+<h3 id="查看触发器">查看触发器</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SHOW</span> <span class="keyword">TRIGGERS</span>;</span></span><br></pre></td></tr></table></figure>
+<h2 id="实例：订单与库存管理">实例：订单与库存管理</h2><p>触发时间：<code>AFTER</code></p>
+<h3 id="准备工作">准备工作</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#建立商品表</span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> g(</span><br><span class="line">id <span class="built_in">int</span>,</span><br><span class="line">name <span class="built_in">varchar</span>(<span class="number">10</span>),</span><br><span class="line">num <span class="built_in">int</span></span><br><span class="line">)<span class="keyword">CHARSET</span> UTF8;</span></span><br><span class="line">#建立订单表</span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> o(</span><br><span class="line">oid <span class="built_in">int</span>,</span><br><span class="line">gid <span class="built_in">int</span>,</span><br><span class="line">much <span class="built_in">int</span></span><br><span class="line">)<span class="keyword">CHARSET</span> UTF8;</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> g</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>, <span class="string">'猪'</span>, <span class="number">22</span>),</span><br><span class="line">(<span class="number">2</span>,<span class="string">'羊'</span>, <span class="number">19</span>),</span><br><span class="line">(<span class="number">3</span>,<span class="string">'狗'</span>, <span class="number">12</span>),</span><br><span class="line">(<span class="number">4</span>,<span class="string">'猫'</span>, <span class="number">8</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="operator"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> o</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span></span><br><span class="line"></span><br><span class="line">#手动更新</span><br><span class="line"><span class="operator"><span class="keyword">UPDATE</span> g <span class="keyword">SET</span> num = num-<span class="number">3</span></span><br><span class="line"><span class="keyword">WHERE</span> id = <span class="number">2</span>;</span></span><br></pre></td></tr></table></figure>
+<h3 id="增加一个订单">增加一个订单</h3><p>要求：增加订单，库存数量相应变化</p>
+<ul>
+<li>监视地点：o表</li>
+<li>监视操作：INSERT</li>
+<li>触发操作：UPDATE</li>
+<li>触发时间：AFTER</li>
+</ul>
+<h4 id="建立简单触发器">建立简单触发器</h4><p>每一次只能对id=2的num进行操作<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#改变结束符</span><br><span class="line">DELIMITER || #结束符为||,注意后面没有分号</span><br><span class="line"></span><br><span class="line">#建立触发器</span><br><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> tg1</span><br><span class="line"><span class="keyword">AFTER</span> <span class="keyword">INSERT</span> <span class="keyword">ON</span> o</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">UPDATE</span> g <span class="keyword">SET</span> NUM = NUM-<span class="number">3</span> <span class="keyword">WHERE</span> id = <span class="number">2</span>;</span></span><br><span class="line"><span class="operator"><span class="keyword">END</span> ||</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="如何在触发器引用行的值">如何在触发器引用行的值</h4><ul>
+<li>对于<code>INSERT</code>而言，新增的行用<code>NEW</code>来表示<ul>
+<li>行中每一列的值，用<code>NEW.列名</code>来表示</li>
+</ul>
+</li>
+<li>对于<code>DELETE</code>而言，删除的行的值用<code>OLD.列名</code>来表示</li>
+<li>对于<code>UPDATE</code>而言，修改前的行中的值用<code>OLD.列名</code>来引用，而修改后的数据用<code>NEW.列名</code>来引用</li>
+</ul>
+<h4 id="简单触发器升级版">简单触发器升级版</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> tg2</span><br><span class="line"><span class="keyword">AFTER</span> <span class="keyword">INSERT</span> <span class="keyword">ON</span> o</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">UPDATE</span> g <span class="keyword">SET</span> NUM = NUM - NEW.much <span class="keyword">WHERE</span> id = NEW.gid;</span></span><br><span class="line"><span class="operator"><span class="keyword">END</span> ||</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除一个订单">删除一个订单</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> tg3</span><br><span class="line"><span class="keyword">AFTER</span> <span class="keyword">DELETE</span> <span class="keyword">ON</span> o</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span> </span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">UPDATE</span> g <span class="keyword">SET</span> NUM = NUM + OLD.much <span class="keyword">WHERE</span> id = OLD.gid;</span></span><br><span class="line"><span class="operator"><span class="keyword">END</span> ||</span></span><br></pre></td></tr></table></figure>
+<h3 id="更新一个订单">更新一个订单</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> tg4</span><br><span class="line"><span class="keyword">AFTER</span> <span class="keyword">UPDATE</span> <span class="keyword">ON</span> o</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line"><span class="keyword">UPDATE</span> g <span class="keyword">SET</span> NUM = NUM + OLD.much <span class="keyword">WHERE</span> id = OLD.gid;</span></span><br><span class="line"><span class="operator"><span class="keyword">UPDATE</span> g <span class="keyword">SET</span> NUM = NUM - NEW.much <span class="keyword">WHERE</span> id = NEW.gid;</span></span><br><span class="line"><span class="operator"><span class="keyword">END</span> ||</span></span><br></pre></td></tr></table></figure>
+<h2 id="AFTER和BEFORE区别"><code>AFTER</code>和<code>BEFORE</code>区别</h2><ul>
+<li><code>AFTER</code>:先完成数据的增删改，在触发<ul>
+<li>触发语句晚于增删改，无法影响前面的增删改</li>
+</ul>
+</li>
+<li><code>BEFORE</code>：先完成触发，再完成增删改<ul>
+<li>触发语句先于监视的增删改发生  </li>
+</ul>
+</li>
+</ul>
+<h3 id="典型案例">典型案例</h3><p>对于所下订单进行判断，如果订单数量&gt;5， 认为是恶意订单，强制把所定商品数量改成5</p>
+<h4 id="触发器四要素">触发器四要素</h4><ol>
+<li>监视地点: o</li>
+<li>监视事件：INSERT</li>
+<li>触发事件：UPDATE</li>
+<li>触发事件: BEFORE</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TRIGGER</span> tg5</span><br><span class="line"><span class="keyword">BEFORE</span> <span class="keyword">INSERT</span> <span class="keyword">ON</span> o</span><br><span class="line"><span class="keyword">FOR</span> <span class="keyword">EACH</span> <span class="keyword">ROW</span></span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">    <span class="keyword">IF</span> NEW.much &gt; <span class="number">5</span> <span class="keyword">THEN</span></span><br><span class="line">        <span class="keyword">SET</span> NEW.much = <span class="number">5</span>;</span></span><br><span class="line">    <span class="operator"><span class="keyword">END</span> <span class="keyword">IF</span>;</span></span><br><span class="line">    <span class="operator"><span class="keyword">UPDATE</span> g <span class="keyword">SET</span> NUM = NUM - NEW.much <span class="keyword">WHERE</span> id = NEW.gid;</span></span><br><span class="line"><span class="operator"><span class="keyword">END</span> ||</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="事务">事务</h1><h2 id="存储引擎">存储引擎</h2><p>对于用户而言，同样一张表无论用什么引擎来存储，用户看到的数据是一样的，但是对于<strong>服务器</strong>而言有区别<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> account(</span><br><span class="line">id <span class="built_in">int</span></span><br><span class="line">mondy <span class="built_in">int</span></span><br><span class="line">)<span class="keyword">ENGINE</span> <span class="keyword">INNODB</span> <span class="keyword">CHARSET</span> UTF8;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="常用表的引擎">常用表的引擎</h3><table>
+<thead>
+<tr>
+<th>特点</th>
+<th>MYISAM</th>
+<th>INNODB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>批量插入的速度</td>
+<td>高</td>
+<td>低</td>
+</tr>
+<tr>
+<td>事物安全</td>
+<td></td>
+<td>支持</td>
+</tr>
+<tr>
+<td>全文索引</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>锁机制</td>
+<td>表锁</td>
+<td>行锁</td>
+</tr>
+<tr>
+<td>B树索引</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>哈希表索引</td>
+<td></td>
+<td>支持</td>
+</tr>
+</tbody>
+</table>
+<h2 id="事务的引擎">事务的引擎</h2><p>INNODB或者BDB（使用不多）</p>
+<h2 id="事务的ACID特性">事务的ACID特性</h2><ul>
+<li>通俗的说事物，指一组操作，要么都成功执行，要么都不执行 ==&gt; <strong>原子性</strong></li>
+<li>在所有操作没有执行完毕之前，其他会话不能看到中间改变的过程 ==&gt; <strong>隔离性</strong></li>
+<li>事务发生前后，数据总额匹配 ===&gt; <strong>一致性</strong></li>
+<li>事物产生的影响不能够撤销 ===&gt; <strong>持久性</strong><ul>
+<li>如果出了错误，事物不允许撤销，只能通过“补偿性事务” </li>
+</ul>
+</li>
+</ul>
+<h2 id="事务的语法">事务的语法</h2><p>在<code>COMMIT</code>前，整个事务是隔离的，其他窗口无法见到操作结果<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#开启事务</span><br><span class="line"><span class="operator"><span class="keyword">START</span> <span class="keyword">TRANSACTION</span>;</span></span><br><span class="line">#SQL语句操作</span><br><span class="line">...</span><br><span class="line">#提交事务</span><br><span class="line"><span class="operator"><span class="keyword">COMMIT</span>;</span>#提交</span><br><span class="line">#或者：<span class="operator"><span class="keyword">ROLLBACK</span>;</span> #回滚</span><br></pre></td></tr></table></figure></p>
+<h3 id="显式提交事务">显式提交事务</h3><p>在一个事务<code>COMMIT</code>或者<code>ROLLBACK</code>后，事务结束。下次使用需要再次开启事务。<br>有些语句会默认提交事务，例如：<code>START TRANSACTION;</code><br><img src="http://askingwindy-gitcafe.qiniudn.com/事务.png" alt="事务与普通语句的比较"></p>
+<hr>
+<h1 id="索引">索引</h1><p>索引是针对数据建立的目录<br>作用：加快查询速度<br>坏处：</p>
+<ul>
+<li>降低增删改的速度</li>
+<li>增大了表的文件大小（索引文件甚至可能比数据文件还大）</li>
+</ul>
+<h2 id="案例">案例</h2><p>设新闻表有15列10行，共500W行数据，如何快速导入？</p>
+<ol>
+<li>空白索引全部删除</li>
+<li>导入数据</li>
+<li>数据导入完毕后，集中建立索引</li>
+</ol>
+<h2 id="索引原则">索引原则</h2><ol>
+<li>不过度索引</li>
+<li>建立索引条件列:<ul>
+<li><code>WHERE</code>后面最频繁的条件比较适宜索引</li>
+</ul>
+</li>
+<li>索引散列值，过于集中的值不要索引（没有意义）</li>
+</ol>
+<h2 id="索引类型">索引类型</h2><table>
+<thead>
+<tr>
+<th>索引名</th>
+<th>普通索引</th>
+<th>唯一索引</th>
+<th>主键索引</th>
+<th>全文索引</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作用</td>
+<td>仅是加快查询速度</td>
+<td>行上的值不能重复</td>
+<td>主键必唯一，但是唯一索引不一定是主键</td>
+<td>在mysql默认情况下，对中文意义不大</td>
+</tr>
+<tr>
+<td>声明语法</td>
+<td><code>INDEX</code></td>
+<td><code>UNIQUE</code></td>
+<td><code>PRIMARY KEY</code></td>
+<td><code>FULLTEXT</code></td>
+</tr>
+<tr>
+<td>默认类型</td>
+<td>BTREE</td>
+<td>BTREE</td>
+<td>BTREE</td>
+<td>FULLTEXT</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>一张表上只能有一个主键，但是可以有一个或多个唯一索引</li>
+</ul>
+<h3 id="FULLTEXT">FULLTEXT</h3><p>全文索引对中文意义不大<br>因为英文中有空格、标点符号来拆单词，从而对单词进行索引<br>而中文没有空格来隔开单词，mysql无法识别每个中文词</p>
+<h4 id="用法">用法</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">MATCH</span> (索引名) AGAINSET (<span class="string">'索引词'</span>);</span></span><br></pre></td></tr></table></figure>
+<h4 id="全文索引停止词">全文索引停止词</h4><p>全文索引不针对非常频繁的词做索引，如：this, is, you等</p>
+<h2 id="索引语句">索引语句</h2><h3 id="查看一张表的索引">查看一张表的索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SHOW</span> <span class="keyword">INDEX</span> <span class="keyword">FROM</span> 表名</span></span><br></pre></td></tr></table></figure>
+<h3 id="建立索引">建立索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">ADD</span> <span class="keyword">INDEX</span>/<span class="keyword">UNIQUE</span>/FULLTEXT [索引名](列名) #索引名可选</span><br><span class="line">/<span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> #主键值不需要索引名的</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> member(</span><br><span class="line">id <span class="built_in">int</span>,</span><br><span class="line">email <span class="built_in">varchar</span>(<span class="number">20</span>),</span><br><span class="line">tel <span class="built_in">char</span>(<span class="number">11</span>),</span><br><span class="line">intro <span class="built_in">text</span></span><br><span class="line">)<span class="keyword">ENGINE</span> MYISAM <span class="keyword">CHARSET</span> UTF8;</span></span><br><span class="line"></span><br><span class="line">#给tel列加一个普通的索引</span><br><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> member <span class="keyword">ADD</span> <span class="keyword">INDEX</span> tel(tel);</span></span><br><span class="line">#给email加一个唯一索引</span><br><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> member <span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> (email);</span></span><br><span class="line">#给intro加一个全文索引</span><br><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> member <span class="keyword">ADD</span> FULLTEXT (intro);</span></span><br><span class="line">#给id加一个主键索引</span><br><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> MEMBER <span class="keyword">ADD</span> <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span> (id);</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除索引">删除索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#删除非主键索引</span><br><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">INDEX</span> 索引名;</span></span><br><span class="line">#删除主键索引</span><br><span class="line"><span class="operator"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> 表名 <span class="keyword">DROP</span> <span class="keyword">PRIMARY</span> <span class="keyword">KEY</span>;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="存储过程">存储过程</h1><p>概念类似函数，就是把一段代码封装起来<br>当执行这一段代码的时候，可以调用该存储过程来执行。</p>
+<p>在封装的语句体里，可以用if/else, case,while等控制结构：可以进行sql编程</p>
+<h2 id="存储过程语法">存储过程语法</h2><h3 id="新建一个存储过程">新建一个存储过程</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">PROCEDURE</span> 存储过程名字()</span><br><span class="line"><span class="keyword">BEGIN</span></span><br><span class="line">  #<span class="keyword">SQL</span>语句</span><br><span class="line"><span class="keyword">END</span>||</span></span><br></pre></td></tr></table></figure>
+<h3 id="查看现有的存储过程">查看现有的存储过程</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">SHOW</span> <span class="keyword">PROCEDURE</span> <span class="keyword">STATUS</span>;</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除存储过程">删除存储过程</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">DROP</span> <span class="keyword">PROCEDURE</span> 存储过程名字;</span></span><br></pre></td></tr></table></figure>
+<h3 id="调用存储过程">调用存储过程</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">CALL</span> 存储过程名字();</span></span><br></pre></td></tr></table></figure></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL基本知识/" rel="tag">#SQL基本知识</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/04/16/搭建自己的Blog_hexo/" rel="prev">搭建自己的Blog:hexo</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2015/04/09/SQL学习-Part3-多表连接/" rel="next">3.SQL学习：多表连接</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2015/04/10/SQL学习-Part4-SQL高级语法/"
+                   data-title="4.SQL学习：SQL高级语法" data-url="http://askingwindy.github.io/2015/04/10/SQL学习-Part4-SQL高级语法/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://askingwindy-gitcafe.qiniudn.com/touxiang.png" alt="Askingwindy" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Askingwindy</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">世界尽头与冷酷仙境</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/askingwindy?tab=repositories" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://askingwindy.gitbooks.io/gitbook-java-interview-note/content/" target="_blank">Java面试准备</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符集"><span class="nav-number">1.</span> <span class="nav-text">字符集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#以表声明为UTF8为例"><span class="nav-number">1.1.</span> <span class="nav-text">以表声明为UTF8为例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端与服务器"><span class="nav-number">1.1.1.</span> <span class="nav-text">客户端与服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SQL语句字符集"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">SQL语句字符集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候出现乱码"><span class="nav-number">1.1.2.</span> <span class="nav-text">什么时候出现乱码</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#校对集"><span class="nav-number">2.</span> <span class="nav-text">校对集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#以UTF8为例"><span class="nav-number">2.1.</span> <span class="nav-text">以UTF8为例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何声明校对集"><span class="nav-number">2.1.1.</span> <span class="nav-text">如何声明校对集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看校对集"><span class="nav-number">2.1.2.</span> <span class="nav-text">查看校对集</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#触发器"><span class="nav-number">3.</span> <span class="nav-text">触发器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#触发器创建四要素"><span class="nav-number">3.1.</span> <span class="nav-text">触发器创建四要素</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建触发器语法"><span class="nav-number">3.1.1.</span> <span class="nav-text">创建触发器语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除触发器语法"><span class="nav-number">3.1.2.</span> <span class="nav-text">删除触发器语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看触发器"><span class="nav-number">3.1.3.</span> <span class="nav-text">查看触发器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实例：订单与库存管理"><span class="nav-number">3.2.</span> <span class="nav-text">实例：订单与库存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">3.2.1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增加一个订单"><span class="nav-number">3.2.2.</span> <span class="nav-text">增加一个订单</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建立简单触发器"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">建立简单触发器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何在触发器引用行的值"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">如何在触发器引用行的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简单触发器升级版"><span class="nav-number">3.2.2.3.</span> <span class="nav-text">简单触发器升级版</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除一个订单"><span class="nav-number">3.2.3.</span> <span class="nav-text">删除一个订单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新一个订单"><span class="nav-number">3.2.4.</span> <span class="nav-text">更新一个订单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AFTER和BEFORE区别"><span class="nav-number">3.3.</span> <span class="nav-text">AFTER和BEFORE区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#典型案例"><span class="nav-number">3.3.1.</span> <span class="nav-text">典型案例</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#触发器四要素"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">触发器四要素</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#事务"><span class="nav-number">4.</span> <span class="nav-text">事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储引擎"><span class="nav-number">4.1.</span> <span class="nav-text">存储引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用表的引擎"><span class="nav-number">4.1.1.</span> <span class="nav-text">常用表的引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务的引擎"><span class="nav-number">4.2.</span> <span class="nav-text">事务的引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务的ACID特性"><span class="nav-number">4.3.</span> <span class="nav-text">事务的ACID特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事务的语法"><span class="nav-number">4.4.</span> <span class="nav-text">事务的语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显式提交事务"><span class="nav-number">4.4.1.</span> <span class="nav-text">显式提交事务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引"><span class="nav-number">5.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#案例"><span class="nav-number">5.1.</span> <span class="nav-text">案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引原则"><span class="nav-number">5.2.</span> <span class="nav-text">索引原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引类型"><span class="nav-number">5.3.</span> <span class="nav-text">索引类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FULLTEXT"><span class="nav-number">5.3.1.</span> <span class="nav-text">FULLTEXT</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#用法"><span class="nav-number">5.3.1.1.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全文索引停止词"><span class="nav-number">5.3.1.2.</span> <span class="nav-text">全文索引停止词</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引语句"><span class="nav-number">5.4.</span> <span class="nav-text">索引语句</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看一张表的索引"><span class="nav-number">5.4.1.</span> <span class="nav-text">查看一张表的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建立索引"><span class="nav-number">5.4.2.</span> <span class="nav-text">建立索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除索引"><span class="nav-number">5.4.3.</span> <span class="nav-text">删除索引</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#存储过程"><span class="nav-number">6.</span> <span class="nav-text">存储过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#存储过程语法"><span class="nav-number">6.1.</span> <span class="nav-text">存储过程语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新建一个存储过程"><span class="nav-number">6.1.1.</span> <span class="nav-text">新建一个存储过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看现有的存储过程"><span class="nav-number">6.1.2.</span> <span class="nav-text">查看现有的存储过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除存储过程"><span class="nav-number">6.1.3.</span> <span class="nav-text">删除存储过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用存储过程"><span class="nav-number">6.1.4.</span> <span class="nav-text">调用存储过程</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Askingwindy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"askingwindy"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

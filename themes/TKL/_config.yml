@@ -1,0 +1,46 @@
+# config
+cover: /img/bg_img.jpg
+logo: /img/logo.png
+top_saying:
+- title: 世界尽头与冷酷仙境
+- content:  HEADING TO THE FUTURE ...
+bottom_saying: 每一个不曾起舞的日子都是对生命的辜负
+# Content
+excerpt_link: Read More
+
+rss: /atom.xml
+
+#Works
+works:
+- works_name: AAA
+  works_url: /
+- works_name: BBB
+  works_url: /atom.xml
+
+#duoshuo name
+duoshuo: duoshuo_name
+
+# Miscellaneous
+github: https://github.com/
+twitter: https://twitter.com/
+facebook: https://www.facebook.com/
+google: https://google.com/
+weibo: http://weibo.com/
+
+#about  timeline
+timeline:
+- num: 1
+  word: 2014/06/12-Start
+- num: 2
+  word: 2014/11/29-XXX
+- num: 3
+  word: 2015/02/18-DDD
+- num: 4
+  word: More
+
+#Links
+links:
+- name: Kieran
+  link: http://go.kieran.top/
+- name: Name
+  link: http://domain.com/

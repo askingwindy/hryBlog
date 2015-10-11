@@ -1,0 +1,777 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.1"/>
+
+
+    <meta name="description" content="世界尽头与冷酷仙境" />
+
+
+
+  <meta name="keywords" content="Maven," />
+
+
+
+
+
+  <link rel="shorticon icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.1" />
+
+
+<meta name="description" content="参考文献：
+
+maven用途、核心概念、用法、常用参数和命令、扩展
+Maven官方文档
+Maven权威指南
+maven安装
+理解maven的核心概念
+
+MAVEN是什么Maven 是为 Java™ 开发人员提供的一个极为优秀的构建工具，也可以使用它来管理您的项目生命周期。作为一个生命周期管理工具，Maven 是基于阶段操作的，而不像 Ant 是基于 “任务” 构建的。
+Maven 完成项目生命周期">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MAVEN学习-1">
+<meta property="og:url" content="http://askingwindy.github.io/2014/05/16/odl日志-MAVEN学习-1/index.html">
+<meta property="og:site_name" content="猫生">
+<meta property="og:description" content="参考文献：
+
+maven用途、核心概念、用法、常用参数和命令、扩展
+Maven官方文档
+Maven权威指南
+maven安装
+理解maven的核心概念
+
+MAVEN是什么Maven 是为 Java™ 开发人员提供的一个极为优秀的构建工具，也可以使用它来管理您的项目生命周期。作为一个生命周期管理工具，Maven 是基于阶段操作的，而不像 Ant 是基于 “任务” 构建的。
+Maven 完成项目生命周期">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MAVEN学习-1">
+<meta name="twitter:description" content="参考文献：
+
+maven用途、核心概念、用法、常用参数和命令、扩展
+Maven官方文档
+Maven权威指南
+maven安装
+理解maven的核心概念
+
+MAVEN是什么Maven 是为 Java™ 开发人员提供的一个极为优秀的构建工具，也可以使用它来管理您的项目生命周期。作为一个生命周期管理工具，Maven 是基于阶段操作的，而不像 Ant 是基于 “任务” 构建的。
+Maven 完成项目生命周期">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+  <title> MAVEN学习-1 | 猫生 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><h1 class="site-meta">
+  <span class="logo-line-before"><i></i></span>
+  <a href="/" class="brand" rel="start">
+      <span class="logo">
+        <i class="icon-next-logo"></i>
+      </span>
+      <span class="site-title">猫生</span>
+  </a>
+  <span class="logo-line-after"><i></i></span>
+</h1>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon icon-next-home"></i> <br />
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            <i class="menu-item-icon icon-next-categories"></i> <br />
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            <i class="menu-item-icon icon-next-about"></i> <br />
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            <i class="menu-item-icon icon-next-archives"></i> <br />
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            <i class="menu-item-icon icon-next-tags"></i> <br />
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', '1LvasUPewmMcTCMJXJmZ','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      
+      
+        <h1 class="post-title" itemprop="name headline">
+          
+          
+            
+              MAVEN学习-1
+            
+          
+        </h1>
+      
+
+      <div class="post-meta">
+        <span class="post-time">
+          发表于
+          <time itemprop="dateCreated" datetime="2014-05-16T12:54:04+08:00" content="2014-05-16">
+            2014-05-16
+          </time>
+        </span>
+
+        
+          <span class="post-category" >
+            &nbsp; | &nbsp; 分类于
+            
+              <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                <a href="/categories/学习Maven/" itemprop="url" rel="index">
+                  <span itemprop="name">学习Maven</span>
+                </a>
+              </span>
+
+              
+              
+
+            
+          </span>
+        
+
+        
+          
+            <span class="post-comments-count">
+              &nbsp; | &nbsp;
+              <a href="/2014/05/16/odl日志-MAVEN学习-1/#comments" itemprop="discussionUrl">
+                <span class="post-comments-count ds-thread-count" data-thread-key="2014/05/16/odl日志-MAVEN学习-1/" itemprop="commentsCount"></span>
+              </a>
+            </span>
+          
+        
+      </div>
+    </header>
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>参考文献：</p>
+<ol>
+<li><a href="http://trinea.iteye.com/blog/1290898" target="_blank" rel="external">maven用途、核心概念、用法、常用参数和命令、扩展</a></li>
+<li><a href="http://maven.apache.org/guides/index.html" target="_blank" rel="external">Maven官方文档</a></li>
+<li><a href="http://www.sonatype.com/books/maven-book/reference_zh/public-book.html" target="_blank" rel="external">Maven权威指南</a></li>
+<li><a href="http://maven.apache.org/download.html" target="_blank" rel="external">maven安装</a></li>
+<li><a href="http://www.cnblogs.com/holbrook/archive/2012/12/24/2830519.html" target="_blank" rel="external">理解maven的核心概念</a></li>
+</ol>
+<h1 id="MAVEN是什么">MAVEN是什么</h1><p>Maven 是为 Java™ 开发人员提供的一个极为优秀的<strong>构建工具</strong>，也可以使用它来管理您的项目生命周期。<br>作为一个生命周期管理工具，Maven 是基于阶段操作的，而不像 Ant 是基于 “任务” 构建的。</p>
+<p>Maven 完成项目生命周期的所有阶段，包括验证、代码生成、编译、测试、打包、集成测试、安装、部署、以及项目网站创建和部署。</p>
+<a id="more"></a>
+<h2 id="Pom">Pom</h2><p>pom是指project object Model。</p>
+<p>pom是一个xml，是maven工作的基础，在执行task或者goal时，maven会去项目根目录下读取pom.xml获得需要的配置信息。</p>
+<p>pom文件中包含了项目的信息和maven build项目所需的配置信息，通常有项目信息(如版本、成员)、项目的依赖、插件和goal、build选项等等</p>
+<p>pom是可以继承的，通常对于一个大型的项目或是多个module的情况，子模块的pom需要指定父模块的pom。</p>
+<h5 id="groupId:artifactId:version唯一确定了一个artifact">groupId:artifactId:version唯一确定了一个artifact</h5><h3 id="Pom里面的元素">Pom里面的元素</h3><ol>
+<li><p>project pom文件的顶级元素</p>
+</li>
+<li><p>modelVersion 所使用的object model版本，为了确保稳定的使用，这个元素是强制性的。除非maven开发者升级模板，否则不需要修改  </p>
+</li>
+<li><p>groupId 是项目创建团体或组织的唯一标志符，通常是域名倒写，如groupId  5. org.apache.maven.plugins就是为所有maven插件预留的  </p>
+</li>
+<li><p>artifactId 是项目artifact唯一的基地址名  </p>
+</li>
+<li><p>packaging artifact打包的方式，如jar、war、ear等等。默认为jar。这个不仅表示项目最终产生何种后缀的文件，也表示build过程使用什么样的<a target="_blank" href="http://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Built-in_Lifecycle_Bindings">lifecycle</a>。  </p>
+</li>
+<li><p>version artifact的版本，通常能看见为类似0.0.1-SNAPSHOT，其中SNAPSHOT表示项目开发中，为开发版本  </p>
+</li>
+<li><p>name 表示项目的展现名，在maven生成的文档中使用</p>
+</li>
+<li><p>url表示项目的地址，在maven生成的文档中使用</p>
+</li>
+<li><p>description 表示项目的描述，在maven生成的文档中使用</p>
+</li>
+<li><p>dependencies 表示依赖，在子节点dependencies中添加具体依赖的groupId artifactId和version</p>
+</li>
+<li><p>build 表示build配置 </p>
+</li>
+<li><p>parent 表示父pom  </p>
+</li>
+</ol>
+<h3 id="Repositories">Repositories</h3><p>Repositories是用来存储Artifact的。如果说我们的项目产生的Artifact是一个个小工具，那么Repositories就是一个仓库，里面有我们自己创建的工具，也可以储存别人造的工具，我们在项目中需要使用某种工具时，在pom中声明dependency，编译代码时就会根据dependency去下载工具（Artifact），供自己使用。</p>
+<p>同时，自己的项目完成后可以通过mvn install命令将项目放到仓库（Repositories）中仓库分为本地仓库和远程仓库，远程仓库是指远程服务器上用于存储Artifact的仓库，本地仓库是指本机存储Artifact的仓库，在系统.m2/repository下面。</p>
+<h3 id="Denpendency">Denpendency</h3><p>依赖关系的管理是maven最为人称道的地方。一个工程可以依赖多个其他工程， 通过工程的唯一标识（groupId+artifactId+version)可以明确指明依赖的库及版本，而且能够处理 依赖关系的传递。 maven可以指定依赖的作用范围（scope）</p>
+<h4 id="更多依赖关系学习">更多依赖关系学习</h4><p><a href="http://blog.csdn.net/songdeitao/article/details/18765405" target="_blank" rel="external"> 一起学Maven(Maven的依赖管理特性)</a></p>
+<hr>
+<h2 id="SVM">SVM</h2><p>这里说的版本管理（version management）不是指版本控制（version control）</p>
+<p>版本管理中说得版本是指构件（artifact）的版本，而<strong>非源码</strong>的版本（如subversion中常见的rXXX，或者git中一次提交都有个sha1的commit号）</p>
+<h3 id="SNAPSHOT">SNAPSHOT</h3><p>Maven有SNAPSHOT版本的概念，它与release版本对应，后者是指1.0，1.1，2.0这样稳定的发布版本。</p>
+<p>假设现在乙可以将B的版本设置成1.0-SNAPSHOT，每次更改后，都<code>mvn deploy</code>到nexus中，每次deploy，maven都会将SNAPSHOT改成一个当前时间的timestamp，比如B-1.0-SNAPSHOT.jar到nexus中后，会成为这个样子：B-1.0-20081017-020325-13.jar。<br>Maven在处理A中对于B的SNAPSHOT依赖时，会根据这样的timestamp下载最新的jar，默认Maven每天 更新一次，如果你想让Maven<strong>强制更新</strong>，可以使用-U参数，如：<code>mvn clean install -U</code> 。</p>
+<p>现在事情简化成了这个样子：乙做更改，然后mvn deploy，甲用最简单的maven命令就能得到最新的B。</p>
+<hr>
+<h2 id="Archetype">Archetype</h2><p>maven创建项目是根据Archetype（原型）创建</p>
+<p>Archetype对于项目的作用就相当于模具对于工具的作用，我们想做一个锤子，将铁水倒入模具成型后，稍加修改就可以了。</p>
+<p>我们可以根据项目类型的需要使用不同的Archetype创建项目。通过Archetype我们可以快速标准的创建项目。利用Archetype创建完项目后都有标准的文件夹目录结构。</p>
+<h3 id="quick_start工程">quick start工程</h3><p>创建一个简单的quick start项目，指定 -DarchetypeArtifactId为maven-archetype-quickstart，如下命令</p>
+<pre><code class="xml">mvn archetype:generate \
+-DgroupId=org.amson.openflow \
+-DartifactId=testing \
+-DarchetypeArtifactId=maven-archetype-quickstart \
+-DinteractiveMode=false
+</code></pre>
+<p>其中DgroupId指定groupId，DartifactId指定artifactId，DarchetypeArtifactId指定ArchetypeId，DinteractiveMode表示是否使用交互模式，交互模式会让用户填写版本信息之类的，非交互模式采用默认值。这样我们便建好了一个简单的maven项目。</p>
+<p>（也可以利用eclipse简单方便快捷创建maven项目）</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Maven/" rel="tag">#Maven</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2014/05/16/odl日志-MAVEN学习-2/" rel="prev">MAVEN学习-2</a>
+            
+          </div>
+
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2014/05/05/Git方法_Git说明与使用教程/" rel="next">Git说明与使用教程</a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2014/05/16/odl日志-MAVEN学习-1/"
+                   data-title="MAVEN学习-1" data-url="http://askingwindy.github.io/2014/05/16/odl日志-MAVEN学习-1/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="http://askingwindy-gitcafe.qiniudn.com/touxiang.png" alt="Askingwindy" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Askingwindy</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">世界尽头与冷酷仙境</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://github.com/askingwindy?tab=repositories" target="_blank">GitHub</a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://askingwindy.gitbooks.io/gitbook-java-interview-note/content/" target="_blank">Java面试准备</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MAVEN是什么"><span class="nav-number">1.</span> <span class="nav-text">MAVEN是什么</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pom"><span class="nav-number">1.1.</span> <span class="nav-text">Pom</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#groupId:artifactId:version唯一确定了一个artifact"><span class="nav-number">1.1.0.0.1.</span> <span class="nav-text">groupId:artifactId:version唯一确定了一个artifact</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pom里面的元素"><span class="nav-number">1.1.1.</span> <span class="nav-text">Pom里面的元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Repositories"><span class="nav-number">1.1.2.</span> <span class="nav-text">Repositories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Denpendency"><span class="nav-number">1.1.3.</span> <span class="nav-text">Denpendency</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更多依赖关系学习"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">更多依赖关系学习</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVM"><span class="nav-number">1.2.</span> <span class="nav-text">SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SNAPSHOT"><span class="nav-number">1.2.1.</span> <span class="nav-text">SNAPSHOT</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Archetype"><span class="nav-number">1.3.</span> <span class="nav-text">Archetype</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#quick_start工程"><span class="nav-number">1.3.1.</span> <span class="nav-text">quick start工程</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy; &nbsp; 
+  <span itemprop="copyrightYear">2015</span>
+  <span class="with-love">
+    <i class="icon-next-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Askingwindy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"askingwindy"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.1"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.1"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.1" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.1"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.1" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+    });
+  </script>
+
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
