@@ -1,7 +1,7 @@
-title: "1.SQL学习：SQL列类型"
+title: 1.SQL学习：SQL列类型
 date: 2015-04-03 10:36:30
-tags: [SQL]
-categories: SQL基本知识
+tags: [学习：SQL,程序员初级修炼]
+categories: SQL
 description: 主要学习了SQL表的数值类型以及时间戳的表达、运算
 ---
 

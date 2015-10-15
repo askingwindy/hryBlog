@@ -1,7 +1,7 @@
 title: "3.SQL学习：多表连接"
 date: 2015-04-09 10:36:30
-tags: [SQL]
-categories: SQL基础知识
+tags: [学习：SQL,程序员初级修炼]
+categories: SQL
 description: 主要学习了多表连接查询：`LEFT JOIN`、`RIGHT JOIN`、`INNER JOIN` 以及视图
 ---
 #Pre：表

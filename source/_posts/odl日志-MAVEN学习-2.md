@@ -1,7 +1,7 @@
 title: MAVEN学习-2
 date: 2014-05-16 14:54:04
-categories: 学习Maven
-tags: [Maven]
+categories: Maven
+tags: [程序员初级修炼,学习：Maven]
 ---
 参考文献：
 1. [maven用途、核心概念、用法、常用参数和命令、扩展](http://trinea.iteye.com/blog/1290898)

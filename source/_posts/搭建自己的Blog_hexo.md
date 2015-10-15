@@ -1,7 +1,7 @@
 title: "搭建自己的Blog:hexo"
 date: 2015-04-16 16:36:30
 tags: [Blog, 程序员初级修炼]
-categories: Blog
+categories: Personal
 description: 主要介绍了Hexo，以及如何利用Hexo在windows和Ubuntu系统下搭建环境,以及将本地blog托管在github/gitcafe上
 ---
 # hexo简介

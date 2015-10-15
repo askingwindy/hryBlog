@@ -1,6 +1,6 @@
 title: "4.SQL学习：SQL高级语法"
 date: 2015-04-10 16:36:20
-tags: [SQL基本知识]
+tags: [学习：SQL,程序员初级修炼]
 categories: SQL
 description: 主要学习了：字符集、校对集；触发器；事务；索引以及存储过程
 ---

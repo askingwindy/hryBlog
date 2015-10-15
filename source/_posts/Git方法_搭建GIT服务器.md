@@ -1,7 +1,7 @@
 title: 搭建GIT服务器
 date: 2015-03-1 09:07:15
-categories: Git使用教程
-tags: [Git]
+categories: Git
+tags: [Git使用]
 description: 如何在本地搭建自己的GIT服务器，来分布式协作代码;以及搭建完成后，客户端如何使用
 ---
 #搭建GIT服务器

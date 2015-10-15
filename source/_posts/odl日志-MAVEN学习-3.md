@@ -1,7 +1,7 @@
 title: MAVEN学习-3
 date: 2014-05-16 16:54:04
-categories: 学习Maven
-tags: [Maven]
+categories: Maven
+tags: [程序员初级修炼,学习：Maven]
 ---
 # ODL中Maven管理
 1. 关闭MAVEN的测试功能

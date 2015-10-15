@@ -1,6 +1,6 @@
 title: "2.SQL学习：SQL基本操作"
 date: 2015-04-05 21:36:30
-tags: [SQL基本知识]
+tags: [学习：SQL,程序员初级修炼]
 categories: SQL
 description: SQL表的建立、数据的增删改查以及列的增删改，重点学习了查询关键字，包括了普通的WHERE, GROUP BY,  HAVING,ORDER BY, LIMIT，以及子查询
 ---

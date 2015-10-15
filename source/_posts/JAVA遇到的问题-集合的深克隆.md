@@ -1,7 +1,7 @@
 title: "集合的深克隆"
 date: 2015-04-28 12:36:30
-tags: [Java]
-categories: Java遇到的问题
+tags: [Java遇到的问题]
+categories: Java
 description: 什么是深克隆？JAVA类如何深克隆？集合如何深克隆？附加小菜：Marker Interface
 ---
 #什么是深克隆

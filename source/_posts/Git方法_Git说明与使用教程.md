@@ -1,7 +1,7 @@
 title: Git说明与使用教程
 date: 2014-05-5 09:07:15
-categories: Git使用教程
-tags: [Git]
+categories: Git
+tags: [Git使用]
 description: 如何将本地文件夹初始化为一个Git仓库，并进行版本回退等管理
 ---
 

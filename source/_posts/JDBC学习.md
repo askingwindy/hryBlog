@@ -1,7 +1,7 @@
 title: "学习JDBC:JDBC"
 date: 2015-04-29 16:36:30
 tags: [JDBC]
-categories: JDBC
+categories: SQL
 description: 主要介绍了什么是JDBC，以及在JAVA里面如何关联数据库
 ---
 #JDBC简介
